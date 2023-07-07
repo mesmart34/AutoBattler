@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67177ac453842398b74dd2e055b15ef, type: 3}
+  m_Name: Paladin
+  m_EditorClassIdentifier: 
+  _name: Paladin
+  _health: 700
+  _mana: 120
+  _manaRegenerationAmountPerTick: 2
+  _attackStrength: 65
+  _attackRecoverTime: 1.8
+  _attackMissProbability: 0
+  _attackDamageType: 0
+  _physicalShield: 0
+  _physicalDamageResist: 12
+  _magicalShield: 0
+  _magicalDamageResist: 10
+  _isEnemy: 0
+  _skills:
+  - {fileID: 11400000, guid: cf47c79c25c0d4e4b9cbde978d19e685, type: 2}
+  - {fileID: 11400000, guid: a8c9cec3db1abe04a888cfb0d71140d8, type: 2}
+  - {fileID: 11400000, guid: 0096586dd39bba348b356b9302ec7ff6, type: 2}
+  - {fileID: 11400000, guid: 0fe83bea6057d1b4fb00d4db271d72dc, type: 2}

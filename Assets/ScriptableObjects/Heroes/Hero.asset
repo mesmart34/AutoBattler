@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f67177ac453842398b74dd2e055b15ef, type: 3}
+  m_Name: Hero
+  m_EditorClassIdentifier: 
+  _name: Paladin
+  _health: 700
+  _mana: 0
+  _attackStrength: 100
+  _attackRecoverTime: 4
+  _attackMissProbability: 0.074
+  _attackDamageType: 0
+  _physicalShield: 0
+  _physicalDamageResist: 0
+  _magicalShield: 0
+  _magicalDamageResist: 0
+  _isEnemy: 1
+  _skills: []
