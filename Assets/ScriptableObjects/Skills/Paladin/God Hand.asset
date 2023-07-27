@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 304faf6cc5b44eb6bee2e7d268045e54, type: 3}
   m_Name: God Hand
   m_EditorClassIdentifier: 
+  Name: God Hand
+  Description: God Hand wadwadwadaw

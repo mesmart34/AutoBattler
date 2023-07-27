@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58b71618205c4cac8e46b2bdc040c6fd, type: 3}
   m_Name: Double Shoot
   m_EditorClassIdentifier: 
+  Name: Double Shoot
+  Description: Double Shoot Double Shoot

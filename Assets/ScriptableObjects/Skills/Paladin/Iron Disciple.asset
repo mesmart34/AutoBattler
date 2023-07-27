@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5248a15c87c5413697141748d15415f2, type: 3}
   m_Name: Iron Disciple
   m_EditorClassIdentifier: 
+  Name: Iroin dwadaw
+  Description: Iroin dwadawIroin dwadawIroin dwadaw
   ResistBonus: 1
   Radius: 2

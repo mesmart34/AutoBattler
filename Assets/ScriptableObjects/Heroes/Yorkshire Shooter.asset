@@ -24,7 +24,7 @@ MonoBehaviour:
   _physicalDamageResist: 4
   _magicalShield: 0
   _magicalDamageResist: 5
-  _isEnemy: 1
+  _isEnemy: 0
   _skills:
   - {fileID: 11400000, guid: 73367d3372470004aa949b7a2f8302e7, type: 2}
   - {fileID: 11400000, guid: 522d33813d12ea74eb4d8aa323c93cbc, type: 2}

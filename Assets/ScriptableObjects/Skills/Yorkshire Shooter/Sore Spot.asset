@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee9b51180c734a3cb93eb438d5c128da, type: 3}
   m_Name: Sore Spot
   m_EditorClassIdentifier: 
+  Name: Sore Spot
+  Description: Sore SpotSore Spot
   StealManaAmount: 5
   ResistIgnoreAmount: 5

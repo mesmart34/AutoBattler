@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f0e1f854a264d23b9ab68ee139523ef, type: 3}
   m_Name: Weakness
   m_EditorClassIdentifier: 
+  Name: 1232131
+  Description: wdadawdawd
   DamageAmount: 100
   X: 3

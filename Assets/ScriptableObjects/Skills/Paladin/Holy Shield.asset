@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 500e17ab562b41bbbf3bd0cb798414fe, type: 3}
   m_Name: Holy Shield
   m_EditorClassIdentifier: 
+  Name: Holy Shield
+  Description: Holy Shield adwadwadawda

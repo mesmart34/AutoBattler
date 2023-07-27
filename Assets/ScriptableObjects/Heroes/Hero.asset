@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f67177ac453842398b74dd2e055b15ef, type: 3}
   m_Name: Hero
   m_EditorClassIdentifier: 
-  _name: Paladin
+  _name: Hero
   _health: 700
   _mana: 0
+  _manaRegenerationAmountPerTick: 0
   _attackStrength: 100
   _attackRecoverTime: 4
   _attackMissProbability: 0.074
@@ -24,4 +25,6 @@ MonoBehaviour:
   _magicalShield: 0
   _magicalDamageResist: 0
   _isEnemy: 1
-  _skills: []
+  _skills:
+  - {fileID: 11400000, guid: 0fe83bea6057d1b4fb00d4db271d72dc, type: 2}
+  - {fileID: 11400000, guid: 0096586dd39bba348b356b9302ec7ff6, type: 2}

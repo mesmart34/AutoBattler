@@ -7,6 +7,10 @@ namespace Contracts
 {
     public abstract class SkillData : ScriptableObject
     {
+        public string Name;
+        [TextArea]
+        public string Description;
+        
         public abstract void OnInitialize(Unit unit);
     }
 }
