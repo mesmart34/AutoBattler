@@ -1,0 +1,106 @@
+﻿using System;
+using Common;
+using Common.Unit;
+using Factories;
+using Scripts.Common.Unit;
+using Services;
+using Signals;
+using UnityEngine;
+using Zenject;
+using Random = UnityEngine.Random;
+
+namespace Models
+{
+    [Serializable]
+    public class UnitModel : IInitializable
+    {
+        [Inject]
+        private readonly SignalBus _signalBus;
+        private readonly SpriteRenderer _spriteRenderer;
+        private readonly UnitConfiguration _unitConfiguration;
+        private readonly Canvas _canvas;
+      
+
+        [Inject]
+        private readonly HealthService _healthService;
+        [Inject]
+        private readonly ManaService _manaService;
+        [Inject]
+        private readonly AttackService _attackService;
+        [Inject]
+        private readonly AnimationService _animationService;
+
+        /*[Inject]
+        private readonly EffectController effectController;*/
+
+        [Inject]
+        private readonly EffectService _effectService;
+
+        [Inject]
+        private readonly UnitFacade _unitFacade;
+
+        [Inject]
+        private readonly DamagePopupFactory _damagePopupFactory;
+
+
+        public bool IsEnemy => _unitConfiguration.isEnemy;
+
+        public bool IsAlive => _healthService.IsAlive;
+
+        public bool FindNearestTarget { get; set; }
+        
+        public string Name => _unitConfiguration.name;
+        
+
+
+        public UnitModel(UnitSettings unitSettings)
+        {
+            _unitConfiguration = unitSettings.unitConfiguration;
+            _spriteRenderer = unitSettings.spriteRenderer;
+            _spriteRenderer.sprite = unitSettings.unitConfiguration.sprite[0];
+            _canvas = unitSettings.canvas;
+
+        }
+
+        private void Die()
+        {
+            _signalBus.Fire<UnitDieSignal>();
+            _unitFacade.Die();
+            TurnOff();
+        }
+
+        public void ApplyDamage(int damageAmount)
+        {
+            _healthService?.ApplyDamage(damageAmount);
+            _animationService?.PlayRecieveDamageAnimation();
+            _damagePopupFactory.Create(damageAmount, Color.white, _canvas, 5.0f);
+        }
+
+        public void Initialize()
+        {
+            _spriteRenderer.sprite = _unitConfiguration.sprite[0];
+            _healthService.SetMaxHealth(_unitConfiguration.health);
+            _healthService.OnHealthValueChanged += OnHealthChanged;
+            /*_effectService.AddEffect(new BurnEffect());
+            effectController.AddEffect();*/
+           // _signalBus.Subscribe<StartBattleSignal>(StartBattle);
+            _signalBus.Subscribe<StopBattleSignal>(TurnOff);
+
+        }
+
+        private void OnHealthChanged(int value, int maxValue)
+        {
+            if (value == 0)
+            {
+                Die();
+            }
+        }
+
+        private void TurnOff()
+        {
+            _manaService.TurnOff();
+            _attackService.TurnOff();
+            _animationService.TurnOff();
+        }
+    }
+}

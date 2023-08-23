@@ -3,15 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Unit
+  - Platform
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Board
   - Water
   - UI
-  - 
+  - Unit
   - 
   - 
   - 
@@ -40,4 +42,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 2392391681
     locked: 0
