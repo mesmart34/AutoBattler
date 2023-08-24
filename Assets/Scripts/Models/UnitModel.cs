@@ -105,6 +105,7 @@ namespace Models
         public void PrepareMode()
         {
             UnitState = UnitState.Idle;
+            _attackService.FindTarget();
             _bars.SetActive(true);
         }
 

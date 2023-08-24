@@ -12,6 +12,10 @@ PrefabInstance:
       propertyPath: unitSettings.unitConfiguration
       value: 
       objectReference: {fileID: 11400000, guid: d086bad40b66a7b41865458ac61176ad, type: 2}
+    - target: {fileID: 2008835997962067513, guid: bb3f82facf7bb8944bdf2717315ad6a7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.75
+      objectReference: {fileID: 0}
     - target: {fileID: 2274539315767420075, guid: bb3f82facf7bb8944bdf2717315ad6a7, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -96,7 +96,7 @@ namespace Common
 
         private void Update()
         {
-            if (!_dragged)
+            if (!_dragged && _unitModel.UnitState == UnitState.Idle)
             {
                 DrawLineToTarget();
             }
