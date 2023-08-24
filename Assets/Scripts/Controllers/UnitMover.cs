@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Code.Unit;
 using Common;
 using Common.Board;
 using JetBrains.Annotations;
@@ -17,6 +19,10 @@ namespace Controllers
         private UnitFacade _selectedUnit;
         private Camera _camera;
         private bool _running;
+        private Vector3 _unitPosition;
+        public bool _tavern;
+        private PlatformFacade _selectedUnitPlatform;
+        private Dictionary<UnitFacade, Vector3> _unitInitialPositions = new();
         
         [SerializeField]
         private LayerMask boardLayer;
@@ -44,13 +50,75 @@ namespace Controllers
             _running = true;
         }
 
-        private void Update()
+        private void TavernMove()
         {
-            if (_running)
+             if (Input.GetButtonDown("Fire1"))
             {
-                return;
+                var ray = _camera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hit, 100000, unitLayer))
+                {
+                    if (hit.collider.CompareTag("Unit"))
+                    {
+                        var unitFacade = hit.collider.gameObject.GetComponent<UnitFacade>();
+                        if (unitFacade.Platform != null)
+                        {
+                            _selectedUnitPlatform = unitFacade.Platform;
+                        }
+                        _unitPosition = unitFacade.transform.position;
+                        if (!_unitInitialPositions.ContainsKey(unitFacade))
+                        {
+                            _unitInitialPositions[unitFacade] = _unitPosition;
+                        }
+                        if (unitFacade.IsEnemy)
+                            return;
+                        _selectedUnit = unitFacade;
+                    }
+                }
             }
-            
+            if (Input.GetButtonUp("Fire1") && _selectedUnit != null)
+            {
+                var ray = _camera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hit, 100000, boardLayer))
+                {
+                    if (hit.collider.CompareTag("Platform"))
+                    {
+                        var platform = hit.collider.gameObject.GetComponent<PlatformFacade>();
+                        if (platform._draggable)
+                        {
+                            if (platform.Busy)
+                            {
+                                platform.unitFacade.transform.position = _unitInitialPositions[platform.unitFacade];
+                            }
+                            platform.Clear();
+                            platform.SetUnit(_selectedUnit);
+                            _selectedUnit.transform.position = platform.transform.position;
+                            _selectedUnit = null;
+                        }
+                    }
+                    else
+                    {
+                        _selectedUnit.transform.position =  _unitInitialPositions[_selectedUnit];
+                        _selectedUnitPlatform.unitFacade = null;
+                        _selectedUnitPlatform = null;
+                        _selectedUnit = null;
+                    }
+                }
+            }
+
+            if (_selectedUnit)
+            {
+                var ray = _camera.ScreenPointToRay(Input.mousePosition);
+                if (Physics.Raycast(ray, out RaycastHit hit, 100000, boardLayer))
+                {
+                    _selectedUnit.transform.position = Vector3.Lerp(_selectedUnit.transform.position,
+                        hit.point + Vector3.up * verticalUnitOffsetWhenDragged,
+                        Time.deltaTime * cursorFollowSpeed);
+                }
+            }
+        }
+
+        private void PrepareMove()
+        {
             if (Input.GetButtonDown("Fire1"))
             {
                 var ray = _camera.ScreenPointToRay(Input.mousePosition);
@@ -59,6 +127,7 @@ namespace Controllers
                     if (hit.collider.CompareTag("Unit"))
                     {
                         var unitFacade = hit.collider.gameObject.GetComponent<UnitFacade>();
+                        _unitPosition = unitFacade.transform.position;
                         if (unitFacade.IsEnemy)
                             return;
                         _selectedUnit = unitFacade;
@@ -97,6 +166,24 @@ namespace Controllers
                         Time.deltaTime * cursorFollowSpeed);
                 }
             }
+        }
+        
+        private void Update()
+        {
+            if (_running)
+            {
+                return;
+            }
+
+            if (_tavern)
+            {
+                TavernMove();
+            }
+            else
+            {
+                PrepareMove();
+            }
+           
         }
     }
 }

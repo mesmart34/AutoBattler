@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Numerics;
 using System.Reflection.Emit;
+using Code.Unit;
 using Common.Board;
 using Common.Unit;
 using Controllers;
@@ -70,7 +71,12 @@ namespace Common
             _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
             _material = _spriteRenderer.material;
             OnInitilize?.Invoke();
-            _signalBus.Subscribe<StartBattleSignal>(OnBattleStart);
+            /*_signalBus.Subscribe<StartBattleSignal>(OnBattleStart);*/
+        }
+
+        public void PrepareMode()
+        {
+            _unitModel.PrepareMode();
         }
 
         public void ApplyDamage(int damage)
@@ -120,12 +126,13 @@ namespace Common
             _attackService.FindTarget();
         }
 
-        private void OnBattleStart()
+        public void StartBattle()
         {
+            _unitModel.StartBattle();
             _lineVisible = false;
         }
 
-        private void OnBattleEnd()
+        public void BattleEnd()
         {
             _lineVisible = true;
         }

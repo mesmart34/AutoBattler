@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Services
 {
-    public class AttackService : IInitializable, ITickable, IDisposable
+    public class AttackService : ITickable
     {
         private const string AnimatorAttackTrigger = "Attack";
         private readonly float _attackTimeout;
@@ -48,16 +48,11 @@ namespace Services
             _target.ApplyDamage(_attackStrength);
         }
 
-        private void MakeReady()
+        public void MakeReady()
         {
             _running = true;
         }
-
-        public void Initialize()
-        {
-            _signalBus.Subscribe<StartBattleSignal>(MakeReady);
-        }
-
+        
         public void FindTarget()
         {
             _target = _unitFacade.IsEnemy ? _board.FindPlayer(_unitFacade) : _board.FindEnemy();
@@ -85,14 +80,9 @@ namespace Services
             OnAttackTimeoutValueChange?.Invoke(_attackTimeoutTimer, _attackTimeout);
         }
 
-        public void Dispose()
-        {
-            _signalBus.Unsubscribe<StartBattleSignal>(MakeReady);
-        }
-        
         public void TurnOn()
         {
-            _running = false;
+            _running = true;
         }
 
         public void TurnOff()

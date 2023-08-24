@@ -6,6 +6,7 @@ using Common;
 using Common.Board;
 using Contracts;
 using Controllers;
+using DG.Tweening;
 using Factories;
 using Scripts.Signals;
 using Signals;
@@ -44,10 +45,19 @@ namespace Models
         {
             _transform = transform;
         }
+
+        public BoardState BoardState { get; private set; } = BoardState.Tavern;
         
         public void StartBattle()
         {
-            _signalBus.Fire<StartBattleSignal>();
+            foreach (var enemy in _enemies)
+            {
+                enemy.StartBattle();
+            }
+            foreach (var unit in _units)
+            {
+                unit.StartBattle();
+            }
         }
 
         public UnitFacade FindEnemy(bool nearest = true)
@@ -83,10 +93,10 @@ namespace Models
         public void Initialize()
         {
             _signalBus.Subscribe<UnitDieSignal>(OnSomeUnitDie);
-            _signalBus.Subscribe<UnitPositionChangeSignal>(() =>
+            /*_signalBus.Subscribe<UnitPositionChangeSignal>(() =>
             {
                 FindTargetsForAllUnits();
-            });
+            });*/
             
             _unitFactory.Load();
             _platformFactory.Load();
@@ -95,22 +105,22 @@ namespace Models
             PlayerPlatforms = CreateBoardSide(Vector3.left * distanceBetweenSides);
             EnemyPlatforms = CreateBoardSide(Vector3.right * distanceBetweenSides, true);
 
-            SpawnPlayerUnit("Paladin");
+            BoardState = BoardState.Tavern;
+
+            /*SpawnPlayerUnit("Paladin");
             SpawnPlayerUnit("Knight");      
             SpawnPlayerUnit("Forester");
             SpawnPlayerUnit("Bard");
             
             SpawnEnemyUnit("Nigger");
-            SpawnEnemyUnit("Nigger");
-            SpawnEnemyUnit("Nigger");
-            SpawnEnemyUnit("Nigger");
+            SpawnEnemyUnit("Fire Worm");
 
-            FindTargetsForAllUnits();
-            
-            _playerUIController.ShowBeginAutoBattlePanel("Afro");
+            FindTargetsForAllUnits();*/
+
+            //_playerUIController.ShowBeginAutoBattlePanel("Afro");
         }
 
-        private void FindTargetsForAllUnits()
+        /*private void FindTargetsForAllUnits()
         {
             foreach (var unit in _units)
             {
@@ -120,7 +130,7 @@ namespace Models
             {
                 unit.FindTarget();
             }
-        }
+        }*/
 
         public List<PlatformFacade> CreateTavernBoard(Vector3 offset)
         {
@@ -214,6 +224,34 @@ namespace Models
         public void Tick()
         {
             
+        }
+
+        private void PrepareUnitsAndEnemies()
+        {
+            _units.AddRange(PlayerPlatforms.Where(x => x.unitFacade != null).Select(x => x.unitFacade));
+            //_enemies.AddRange(EnemyPlatforms.Select(x => x.unitFacade));
+            SpawnEnemyUnit("Fire Worm");
+            
+            
+            foreach (var unit in _units)
+            {
+                unit.PrepareMode();
+            }
+            foreach (var unit in _enemies)
+            {
+                unit.PrepareMode();
+            }
+        }
+
+        
+        public void Ready()
+        {
+            _boardSettings.camera.transform.DOMove(_boardSettings.cameraBoardPosition.position, 1.0f).onComplete = () =>
+            {
+                BoardState = BoardState.Prepare;
+                _playerUIController.ShowBeginAutoBattlePanel("Fire Worm");
+                PrepareUnitsAndEnemies();
+            };
         }
     }
 }

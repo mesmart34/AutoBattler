@@ -10,5 +10,6 @@ namespace Common.Unit
         public UnitConfiguration unitConfiguration;
         public SpriteRenderer spriteRenderer;
         public Canvas canvas;
+        public GameObject bars;
     }
 }

@@ -14,9 +14,6 @@ namespace Installers
         [SerializeField]
         private BoardSettings boardSettings;
 
-        [SerializeField]
-        private Transform transform;
-
         public override void InstallBindings()
         {
             BindBoard();
@@ -25,7 +22,7 @@ namespace Installers
 
         private void BindBoard()
         {
-            Container.BindInterfacesAndSelfTo<BoardModel>().AsSingle().WithArguments(transform);
+            Container.BindInterfacesAndSelfTo<BoardModel>().AsSingle().WithArguments(boardSettings.transform);
             Container.BindInstance(boardSettings);
         }
         

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using Code.Unit;
 using Common;
 using Common.Unit;
 using Factories;
@@ -14,44 +16,32 @@ namespace Models
     [Serializable]
     public class UnitModel : IInitializable
     {
-        [Inject]
-        private readonly SignalBus _signalBus;
         private readonly SpriteRenderer _spriteRenderer;
         private readonly UnitConfiguration _unitConfiguration;
         private readonly Canvas _canvas;
-      
+        private GameObject _bars;
 
+
+        [Inject]
+        private readonly SignalBus _signalBus;
+        
         [Inject]
         private readonly HealthService _healthService;
+        
         [Inject]
         private readonly ManaService _manaService;
+        
         [Inject]
         private readonly AttackService _attackService;
+        
         [Inject]
         private readonly AnimationService _animationService;
-
-        /*[Inject]
-        private readonly EffectController effectController;*/
-
-        [Inject]
-        private readonly EffectService _effectService;
-
+        
         [Inject]
         private readonly UnitFacade _unitFacade;
 
         [Inject]
         private readonly DamagePopupFactory _damagePopupFactory;
-
-
-        public bool IsEnemy => _unitConfiguration.isEnemy;
-
-        public bool IsAlive => _healthService.IsAlive;
-
-        public bool FindNearestTarget { get; set; }
-        
-        public string Name => _unitConfiguration.name;
-        
-
 
         public UnitModel(UnitSettings unitSettings)
         {
@@ -59,8 +49,17 @@ namespace Models
             _spriteRenderer = unitSettings.spriteRenderer;
             _spriteRenderer.sprite = unitSettings.unitConfiguration.sprite[0];
             _canvas = unitSettings.canvas;
-
+            _bars = unitSettings.bars;
         }
+        
+        public UnitState UnitState { get; set; } = UnitState.Tavern;
+        public bool IsEnemy => _unitConfiguration.isEnemy;
+
+        public bool IsAlive => _healthService.IsAlive;
+
+        public bool FindNearestTarget { get; set; }
+        
+        public string Name => _unitConfiguration.name;
 
         private void Die()
         {
@@ -81,11 +80,11 @@ namespace Models
             _spriteRenderer.sprite = _unitConfiguration.sprite[0];
             _healthService.SetMaxHealth(_unitConfiguration.health);
             _healthService.OnHealthValueChanged += OnHealthChanged;
+            _bars.SetActive(false);
             /*_effectService.AddEffect(new BurnEffect());
             effectController.AddEffect();*/
            // _signalBus.Subscribe<StartBattleSignal>(StartBattle);
-            _signalBus.Subscribe<StopBattleSignal>(TurnOff);
-
+            //_signalBus.Subscribe<StopBattleSignal>(TurnOff);
         }
 
         private void OnHealthChanged(int value, int maxValue)
@@ -101,6 +100,18 @@ namespace Models
             _manaService.TurnOff();
             _attackService.TurnOff();
             _animationService.TurnOff();
+        }
+
+        public void PrepareMode()
+        {
+            UnitState = UnitState.Idle;
+            _bars.SetActive(true);
+        }
+
+        public void StartBattle()
+        {
+            _manaService.TurnOn();
+            _attackService.TurnOn();
         }
     }
 }

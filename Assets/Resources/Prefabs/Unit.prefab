@@ -413,6 +413,7 @@ MonoBehaviour:
     unitConfiguration: {fileID: 11400000, guid: 24cca76e476e23441a3261eb46dade02, type: 2}
     spriteRenderer: {fileID: 5770193067349428086}
     canvas: {fileID: 2067537012589989414}
+    bars: {fileID: 4388958696506597805}
 --- !u!114 &4402676282767971552
 MonoBehaviour:
   m_ObjectHideFlags: 0

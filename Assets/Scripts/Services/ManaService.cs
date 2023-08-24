@@ -8,7 +8,7 @@ using Zenject;
 
 namespace Services
 {
-    public class ManaService : ITickable, IInitializable, IDisposable
+    public class ManaService : ITickable
     {
         public event Action<int, int> OnManaValueChanged;  
         private int _maxMana;
@@ -62,16 +62,6 @@ namespace Services
                 OnManaValueChanged?.Invoke(_mana, _maxMana);
                 _timer = 0;
             }
-        }
-
-        public void Initialize()
-        {
-            _signalBus.Subscribe<StartBattleSignal>(TurnOn);
-        }
-
-        public void Dispose()
-        {
-            _signalBus.Unsubscribe<StartBattleSignal>(TurnOn);
         }
     }
 }

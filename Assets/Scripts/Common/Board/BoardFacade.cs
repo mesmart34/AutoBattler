@@ -13,5 +13,10 @@ namespace Common.Board
         {
             _boardModel.StartBattle();
         }
+
+        public void Ready()
+        {
+            _boardModel.Ready();
+        }
     }
 }

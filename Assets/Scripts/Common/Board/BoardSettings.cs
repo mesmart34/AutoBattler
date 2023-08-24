@@ -14,6 +14,9 @@ namespace Common.Board
         public Camera camera;
 
         [SerializeField]
+        public Transform transform;
+        
+        [SerializeField]
         public Transform cameraTavernPosition;
 
         [SerializeField]

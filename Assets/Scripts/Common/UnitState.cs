@@ -2,6 +2,7 @@
 {
     public enum UnitState
     {
+        Tavern,
         Idle,
         Battle,
         Dead
