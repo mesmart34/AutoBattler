@@ -48,11 +48,11 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ShowOutline: 0
-    - _Thickness: 0.005
-    - _outline: 0
+    - _Thickness: 0.02
+    - _outline: 1
     m_Colors:
     - _Emission_Color: {r: 59.714096, g: 59.714096, b: 59.714096, a: 0}
-    - _Outline_Color: {r: 1, g: 1, b: 1, a: 0}
+    - _Outline_Color: {r: 0.514151, g: 0.5759042, b: 1, a: 0}
   m_BuildTextureStacks: []
 --- !u!114 &7472991440220379800
 MonoBehaviour:
