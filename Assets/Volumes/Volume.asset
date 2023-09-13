@@ -19,7 +19,7 @@ MonoBehaviour:
   tint:
     m_OverrideState: 0
     m_Value: 0
---- !u!114 &-3962513522584342414
+--- !u!114 &-1464805102925523189
 MonoBehaviour:
   m_ObjectHideFlags: 3
   m_CorrespondingSourceObject: {fileID: 0}
@@ -37,21 +37,21 @@ MonoBehaviour:
     m_Value: 1
   threshold:
     m_OverrideState: 1
-    m_Value: 0.92
+    m_Value: 1.09
   intensity:
     m_OverrideState: 1
-    m_Value: 5.66
+    m_Value: 0.53
   scatter:
     m_OverrideState: 1
-    m_Value: 0.7
+    m_Value: 0
   clamp:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 65472
   tint:
     m_OverrideState: 1
     m_Value: {r: 1, g: 1, b: 1, a: 1}
   highQualityFiltering:
-    m_OverrideState: 0
+    m_OverrideState: 1
     m_Value: 0
   downscale:
     m_OverrideState: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: Volume
   m_EditorClassIdentifier: 
   components:
-  - {fileID: -3962513522584342414}
+  - {fileID: -1464805102925523189}
   - {fileID: -4465692720458292367}
   - {fileID: 94476084070214974}
 --- !u!114 &94476084070214974
