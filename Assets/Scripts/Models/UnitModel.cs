@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Code.Unit;
 using Common;
 using Common.Unit;
+using Controllers;
 using Factories;
 using Scripts.Common.Unit;
 using Services;
@@ -43,6 +44,9 @@ namespace Models
         [Inject]
         private readonly DamagePopupFactory _damagePopupFactory;
 
+        [Inject]
+        private EffectController _effectController;
+
         public UnitModel(UnitSettings unitSettings)
         {
             _unitConfiguration = unitSettings.unitConfiguration;
@@ -68,10 +72,29 @@ namespace Models
             TurnOff();
         }
 
-        public void ApplyDamage(int damageAmount)
+        public void SetManaServiceActive(bool value)
+        {
+            if (value)
+            {
+                _manaService.TurnOn();
+            }
+            else
+            {
+                _manaService.TurnOff();
+            }
+        }
+
+        public void ApplyDamage(int damageAmount, DamageType damageType = DamageType.Physical)
         {
             _healthService?.ApplyDamage(damageAmount);
             _animationService?.PlayRecieveDamageAnimation();
+            _damagePopupFactory.Create(damageAmount, Color.white, _canvas, 5.0f);
+        }
+
+        public void ApplyDamageByEffect(int damageAmount, DamageType damageType = DamageType.Physical)
+        {
+            _healthService?.ApplyDamage(damageAmount);
+            //_animationService?.PlayRecieveDamageAnimation();
             _damagePopupFactory.Create(damageAmount, Color.white, _canvas, 5.0f);
         }
 
@@ -100,6 +123,7 @@ namespace Models
             _manaService.TurnOff();
             _attackService.TurnOff();
             _animationService.TurnOff();
+            _effectController.Deactivate();
         }
 
         public void PrepareMode()
@@ -113,6 +137,7 @@ namespace Models
         {
             _manaService.TurnOn();
             _attackService.TurnOn();
+            _effectController.Activate();
         }
     }
 }

@@ -190,10 +190,15 @@ namespace Models
             _units.Add(unitFacade);
         }
         
-        private void SpawnEnemyUnit(string prefabName)
+        private void SpawnEnemyUnit(string prefabName, Vector2Int position)
         {
-            var platform = EnemyPlatforms.FirstOrDefault(x => !x.unitFacade);
-            var spawnPoint = platform!.transform;
+            var platform = EnemyPlatforms
+                .FirstOrDefault(x => !x.unitFacade && x.position == position);
+            if (platform == null)
+            {
+                platform = EnemyPlatforms.First();
+            }
+            var spawnPoint = platform.transform;
             var unitFacade = _unitFactory.Create(prefabName, true, spawnPoint);
             platform.unitFacade = unitFacade;
             unitFacade.Platform = platform;
@@ -204,13 +209,11 @@ namespace Models
         {
             if (!_enemies.Any(x => x.IsAlive))
             {
-                Debug.Log("Player won");
                 _signalBus.Fire<StopBattleSignal>();
                 StopBattle(true);
             }
             if (!_units.Any(x => x.IsAlive))
             {
-                Debug.Log("Player fucked up");
                 _signalBus.Fire<StopBattleSignal>();
                 StopBattle(false);
             }
@@ -230,8 +233,11 @@ namespace Models
         {
             _units.AddRange(PlayerPlatforms.Where(x => x.unitFacade != null).Select(x => x.unitFacade));
             //_enemies.AddRange(EnemyPlatforms.Select(x => x.unitFacade));
-            SpawnEnemyUnit("Fire Worm");
-            
+            foreach (var enemy in _boardSettings.boardConfiguration.enemies)
+            {
+                SpawnEnemyUnit(enemy.enemyPrefabName, enemy.position);
+            }
+               
             
             foreach (var unit in _units)
             {
@@ -249,7 +255,7 @@ namespace Models
             _boardSettings.camera.transform.DOMove(_boardSettings.cameraBoardPosition.position, 1.0f).onComplete = () =>
             {
                 BoardState = BoardState.Prepare;
-                _playerUIController.ShowBeginAutoBattlePanel("Fire Worm");
+                _playerUIController.ShowBeginAutoBattlePanel(_boardSettings.boardConfiguration.name);
                 PrepareUnitsAndEnemies();
             };
         }

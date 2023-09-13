@@ -26,6 +26,7 @@ namespace Installers
         private void BindFactories()
         {
             Container.Bind<DamagePopupFactory>().AsSingle().NonLazy();
+            Container.Bind<EffectFactory>().AsSingle().NonLazy();
         }
 
         private void BindUnitServices()
@@ -48,10 +49,6 @@ namespace Installers
                 .BindInterfacesAndSelfTo<AnimationService>()
                 .AsSingle()
                 .WithArguments(unitSettings.spriteRenderer, unitSettings.unitConfiguration.sprite, unitSettings.unitConfiguration.emissionMap)
-                .NonLazy();
-            Container
-                .BindInterfacesAndSelfTo<EffectService>()
-                .AsSingle()
                 .NonLazy();
         }
 

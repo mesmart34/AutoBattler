@@ -8,7 +8,7 @@ namespace Common.Board
     public class BoardSettings
     {
         [SerializeField]
-        public BoardUnitSetup boardUnitSetup;
+        public BoardConfiguration boardConfiguration;
 
         [SerializeField]
         public Camera camera;
