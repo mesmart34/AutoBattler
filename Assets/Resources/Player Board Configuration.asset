@@ -9,10 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2fb47b272bb649ca8253b24b8b2bc7f7, type: 3}
-  m_Name: FireWormBoard
+  m_Script: {fileID: 11500000, guid: d83f7016d83c40d8b67e64ae46a70d97, type: 3}
+  m_Name: Player Board Configuration
   m_EditorClassIdentifier: 
-  name: Fire Worm
-  enemies:
-  - name: Fire Worm
-    position: {x: 0, y: 2}
+  units:
+  - name: Knight
+    position: {x: 0, y: 1}
+  - name: Bard
+    position: {x: 0, y: 3}
+  - name: Paladin
+    position: {x: 1, y: 2}

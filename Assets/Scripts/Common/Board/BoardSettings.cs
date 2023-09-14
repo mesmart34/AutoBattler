@@ -8,20 +8,17 @@ namespace Common.Board
     public class BoardSettings
     {
         [SerializeField]
-        public BoardConfiguration boardConfiguration;
+        public EnemyBoardConfiguration enemyBoardConfiguration;
+        
+        [SerializeField]
+        public PlayerBoardConfiguration playerBoardConfiguration;
 
         [SerializeField]
         public Camera camera;
 
         [SerializeField]
         public Transform transform;
-        
-        [SerializeField]
-        public Transform cameraTavernPosition;
 
-        [SerializeField]
-        public Transform cameraBoardPosition;
-        
         [SerializeField]
         public Vector2Int boardPlayerSideSize;
 
@@ -33,5 +30,8 @@ namespace Common.Board
 
         [SerializeField]
         public float distanceBetweenSides = 1;
+
+        [SerializeField]
+        public bool isTavern;
     }
 }

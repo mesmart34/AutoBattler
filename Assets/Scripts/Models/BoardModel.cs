@@ -17,13 +17,15 @@ using Vector3 = UnityEngine.Vector3;
 
 namespace Models
 {
-    public class BoardModel : IInitializable, ITickable
+    public class BoardModel : IInitializable
     {
+        private bool _battling;
         private Transform _transform;
-        private List<UnitFacade> _units = new();
-        private List<UnitFacade> _enemies = new();
-        private List<PlatformFacade> PlayerPlatforms { get; set; } = new();
-        private List<PlatformFacade> EnemyPlatforms { get; set; } = new();
+
+        public List<UnitFacade> Units { get; private set; } = new();
+        public List<UnitFacade> Enemies { get; private set; } = new();
+        public List<PlatformFacade> PlayerPlatforms { get; private set; } = new();
+        public List<PlatformFacade> EnemyPlatforms { get; private set; } = new();
 
         [Inject]
         private SignalBus _signalBus;
@@ -47,14 +49,19 @@ namespace Models
         }
 
         public BoardState BoardState { get; private set; } = BoardState.Tavern;
-        
+
         public void StartBattle()
         {
-            foreach (var enemy in _enemies)
+            if (_boardSettings.isTavern)
+                return;
+            setup();
+            _battling = true;
+            foreach (var enemy in Enemies)
             {
                 enemy.StartBattle();
             }
-            foreach (var unit in _units)
+
+            foreach (var unit in Units)
             {
                 unit.StartBattle();
             }
@@ -62,51 +69,65 @@ namespace Models
 
         public UnitFacade FindEnemy(bool nearest = true)
         {
-            return nearest ? _enemies.OrderBy(x => x.Platform.position.x).FirstOrDefault(x => x.IsAlive) 
-                : _enemies.OrderByDescending(x => x.Platform.position.x).FirstOrDefault(x => x.IsAlive);
+            return nearest
+                ? Enemies.OrderBy(x => x.Platform.position.x).FirstOrDefault(x => x.IsAlive)
+                : Enemies.OrderByDescending(x => x.Platform.position.x).FirstOrDefault(x => x.IsAlive);
         }
-        
+
         public UnitFacade FindPlayer(UnitFacade unitFacade, bool nearest = true)
         {
-            if (_units.Any(x => x.Platform.IsFront == nearest))
+            if (Units.Any(x => x.Platform.IsFront == nearest))
             {
-                return _units
+                return Units
                     .OrderBy(x => Vector3.Distance(unitFacade.transform.position, x.transform.position))
                     .Where(x => x.Platform.IsFront == nearest)
                     .FirstOrDefault(x => x.IsAlive);
             }
-            return _units
+
+            return Units
                 .OrderBy(x => Vector3.Distance(unitFacade.transform.position, x.transform.position))
                 .FirstOrDefault(x => x.IsAlive);
         }
-        
+
         public UnitFacade GetTarget(UnitFacade unit)
         {
             if (!unit.IsEnemy)
             {
-                return _enemies.FirstOrDefault(x => x.IsAlive);
+                return Enemies.FirstOrDefault(x => x.IsAlive);
             }
 
-            return _units.FirstOrDefault(x => x.IsAlive);
+            return Units.FirstOrDefault(x => x.IsAlive);
         }
 
-        public void Initialize()
+        private void setup()
         {
-            _signalBus.Subscribe<UnitDieSignal>(OnSomeUnitDie);
             /*_signalBus.Subscribe<UnitPositionChangeSignal>(() =>
             {
                 FindTargetsForAllUnits();
             });*/
-            
-            _unitFactory.Load();
-            _platformFactory.Load();
+
 
             var distanceBetweenSides = _boardSettings.distanceBetweenSides;
             PlayerPlatforms = CreateBoardSide(Vector3.left * distanceBetweenSides);
-            EnemyPlatforms = CreateBoardSide(Vector3.right * distanceBetweenSides, true);
+            if (!_boardSettings.isTavern)
+            {
+                EnemyPlatforms = CreateBoardSide(Vector3.right * distanceBetweenSides, true);
+            }
+            
+            foreach (var playerConf in _boardSettings.playerBoardConfiguration.units)
+            {
+                var platformFacade = PlayerPlatforms.FirstOrDefault(x => x.position == playerConf.position);
+                SpawnPlayerUnit(playerConf.name, platformFacade);
+            }
+        }
 
-            BoardState = BoardState.Tavern;
-
+        public void Initialize()
+        {
+            //_signalBus.Subscribe<UnitDieSignal>(OnSomeUnitDie);
+            _unitFactory.Load();
+            _platformFactory.Load();
+            setup();
+            //StartBattle();
             /*SpawnPlayerUnit("Paladin");
             SpawnPlayerUnit("Knight");      
             SpawnPlayerUnit("Forester");
@@ -114,7 +135,7 @@ namespace Models
             
             SpawnEnemyUnit("Nigger");
             SpawnEnemyUnit("Fire Worm");
-
+    
             FindTargetsForAllUnits();*/
 
             //_playerUIController.ShowBeginAutoBattlePanel("Afro");
@@ -131,21 +152,6 @@ namespace Models
                 unit.FindTarget();
             }
         }*/
-
-        public List<PlatformFacade> CreateTavernBoard(Vector3 offset)
-        {
-            var platforms = new List<PlatformFacade>();
-            var spacing = _boardSettings.spacing;
-            for (var x = 0; x < _boardSettings.boardPlayerSideSize.x; x++)
-            {
-                for (var y = 0; y < _boardSettings.boardPlayerSideSize.y; y++)
-                {
-                    var position = new Vector3(x * spacing + spacing + offset.x, 0, y * spacing + spacing + offset.y);
-                    platforms.Add(_platformFactory.Create(new Vector2Int(x, y), position  + _boardSettings.position, true, _transform));
-                }
-            }
-            return platforms;
-        }
         
         private List<PlatformFacade> CreateBoardSide(Vector3 offset, bool invertSides = false)
         {
@@ -155,8 +161,9 @@ namespace Models
             {
                 for (var y = 0; y < _boardSettings.boardPlayerSideSize.y; y++)
                 {
-                    var position = new Vector3(x * spacing + spacing + offset.x, 0, y * spacing + spacing + offset.y);
-                    var platform = _platformFactory.Create(new Vector2Int(x, y), position, invertSides, _transform);
+                    var pos = new Vector3(x * spacing + spacing + offset.x, _boardSettings.position.y,
+                        y * spacing + spacing + offset.y);
+                    var platform = _platformFactory.Create(new Vector2Int(x, y), pos, invertSides, _transform);
                     if (invertSides)
                     {
                         if (x == 0)
@@ -171,6 +178,7 @@ namespace Models
                             platform.IsFront = true;
                         }
                     }
+
                     platform._draggable = !invertSides;
                     platforms.Add(platform);
                 }
@@ -178,18 +186,16 @@ namespace Models
 
             return platforms;
         }
-        
 
-        private void SpawnPlayerUnit(string prefabName)
+
+        private void SpawnPlayerUnit(string prefabName, PlatformFacade platformFacade)
         {
-            var platform = PlayerPlatforms.FirstOrDefault(x => !x.unitFacade);
-            var spawnPoint = platform!.transform;
+            var spawnPoint = platformFacade!.transform;
             var unitFacade = _unitFactory.Create(prefabName, false, spawnPoint);
-            platform.unitFacade = unitFacade;
-            unitFacade.Platform = platform;
-            _units.Add(unitFacade);
+            platformFacade.SetUnit(unitFacade);
+            Units.Add(unitFacade);
         }
-        
+
         private void SpawnEnemyUnit(string prefabName, Vector2Int position)
         {
             var platform = EnemyPlatforms
@@ -198,21 +204,23 @@ namespace Models
             {
                 platform = EnemyPlatforms.First();
             }
+
             var spawnPoint = platform.transform;
             var unitFacade = _unitFactory.Create(prefabName, true, spawnPoint);
             platform.unitFacade = unitFacade;
             unitFacade.Platform = platform;
-            _enemies.Add(unitFacade);
+            Enemies.Add(unitFacade);
         }
 
-        private void OnSomeUnitDie()
+        public void OnSomeUnitDie()
         {
-            if (!_enemies.Any(x => x.IsAlive))
+            if (!Enemies.Any(x => x.IsAlive))
             {
                 _signalBus.Fire<StopBattleSignal>();
                 StopBattle(true);
             }
-            if (!_units.Any(x => x.IsAlive))
+
+            if (!Units.Any(x => x.IsAlive))
             {
                 _signalBus.Fire<StopBattleSignal>();
                 StopBattle(false);
@@ -221,43 +229,63 @@ namespace Models
 
         private void StopBattle(bool win)
         {
-            _playerUIController.ShowBattleEndScreen(win);
-        }
-
-        public void Tick()
-        {
-            
+            if (_battling)
+            {
+                _playerUIController.ShowBattleEndScreen(win);
+                _battling = false;
+            }
         }
 
         private void PrepareUnitsAndEnemies()
         {
-            _units.AddRange(PlayerPlatforms.Where(x => x.unitFacade != null).Select(x => x.unitFacade));
+            Units.AddRange(PlayerPlatforms.Where(x => x.unitFacade != null).Select(x => x.unitFacade));
             //_enemies.AddRange(EnemyPlatforms.Select(x => x.unitFacade));
-            foreach (var enemy in _boardSettings.boardConfiguration.enemies)
+            foreach (var enemy in _boardSettings.enemyBoardConfiguration.enemies)
             {
-                SpawnEnemyUnit(enemy.enemyPrefabName, enemy.position);
+                SpawnEnemyUnit(enemy.name, enemy.position);
             }
-               
-            
-            foreach (var unit in _units)
+
+
+            foreach (var unit in Units)
             {
                 unit.PrepareMode();
             }
-            foreach (var unit in _enemies)
+
+            foreach (var unit in Enemies)
             {
                 unit.PrepareMode();
             }
         }
 
-        
+
         public void Ready()
         {
-            _boardSettings.camera.transform.DOMove(_boardSettings.cameraBoardPosition.position, 1.0f).onComplete = () =>
+            if (_boardSettings.isTavern)
             {
-                BoardState = BoardState.Prepare;
-                _playerUIController.ShowBeginAutoBattlePanel(_boardSettings.boardConfiguration.name);
-                PrepareUnitsAndEnemies();
-            };
+                return;
+            }
+
+            BoardState = BoardState.Prepare;
+            _playerUIController.ShowBeginAutoBattlePanel(_boardSettings.enemyBoardConfiguration.name);
+            PrepareUnitsAndEnemies();
+        }
+
+        public void SavePlayerConfiguration()
+        {
+            _boardSettings.playerBoardConfiguration.units.Clear();
+            foreach (var playerPlatform in PlayerPlatforms)
+            {
+                if (!playerPlatform.Busy)
+                {
+                    continue;
+                }
+
+                _boardSettings.playerBoardConfiguration.units.Add(new UnitSetup()
+                {
+                    position = playerPlatform.position,
+                    name = playerPlatform.unitFacade.Name
+                });
+            }
         }
     }
 }

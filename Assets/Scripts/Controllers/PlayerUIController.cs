@@ -48,7 +48,7 @@ namespace Controllers
             battleResultScreen.SetActive(true);
             var rect = battleResultScreen.GetComponent<RectTransform>();
             var startPosition = rect.anchoredPosition3D;
-            var target = startPosition + new Vector3(0, rect.anchoredPosition.y - rect.sizeDelta.y, 0);
+            var target = startPosition + new Vector3(0, rect.anchoredPosition.y - rect.sizeDelta.y - 150, 0);
             rect.DOJumpAnchorPos(target, jumpPower, jumpNumber, jumpTime);
         }
     }

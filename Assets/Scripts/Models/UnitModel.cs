@@ -22,6 +22,8 @@ namespace Models
         private readonly Canvas _canvas;
         private GameObject _bars;
 
+        [Inject]
+        private BoardModel _boardModel;
 
         [Inject]
         private readonly SignalBus _signalBus;
@@ -67,6 +69,7 @@ namespace Models
 
         private void Die()
         {
+            _boardModel.OnSomeUnitDie();
             _signalBus.Fire<UnitDieSignal>();
             _unitFacade.Die();
             TurnOff();

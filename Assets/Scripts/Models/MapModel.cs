@@ -1,12 +1,18 @@
 ﻿using Common.Map;
 using DG.Tweening;
+using Factories;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Models
 {
-    public class MapModel
+    public class MapModel : IInitializable
     {
+        [Inject]
+        private MapIconFactory _mapIconFactory;
+        
         private readonly MapSettings _mapSettings;
         public bool IsMapOpened { get; private set; }
 
@@ -33,6 +39,19 @@ namespace Models
             {
                 _mapSettings.closeButtonText.text = "Close";
             };
+        }
+
+        public void Initialize()
+        {
+            _mapIconFactory.Load();
+            foreach (var configuration in _mapSettings.enemyBoardConfigurations)
+            {
+                var button = _mapIconFactory.Create(configuration, _mapSettings.rows[0]);
+                button.GetComponent<Button>().onClick.AddListener(() =>
+                {
+                    SceneManager.LoadScene("Battle");
+                });
+            }
         }
     }
 }

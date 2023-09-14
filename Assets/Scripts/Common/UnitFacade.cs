@@ -60,6 +60,8 @@ namespace Common
             get => _unitModel.IsAlive;
         }
 
+        public string Name => _unitModel.Name;
+
         public bool FindNearestTarget
         {
             get => _unitModel.FindNearestTarget;

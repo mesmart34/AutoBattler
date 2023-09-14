@@ -6,8 +6,8 @@ using UnityEngine.Serialization;
 
 namespace Common.Board
 {
-    [CreateAssetMenu(menuName = "Autobattler/Board Configuration", fileName = "Board Configuration")]
-    public class BoardConfiguration : ScriptableObject
+    [CreateAssetMenu(menuName = "Autobattler/Enemy Board Configuration", fileName = "Enemy Board Configuration")]
+    public class EnemyBoardConfiguration : ScriptableObject
     {
         public string name;
         public List<UnitSetup> enemies;
@@ -16,7 +16,7 @@ namespace Common.Board
     [Serializable]
     public class UnitSetup
     {
-        public string enemyPrefabName;
+        public string name;
         public Vector2Int position;
     }
 }

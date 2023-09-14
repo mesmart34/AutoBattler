@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using Code.Unit;
 using Common;
 using Common.Board;
+using Common.Tavern;
 using JetBrains.Annotations;
+using Models;
 using Scripts.Signals;
 using Signals;
 using UnityEditor.PackageManager;
@@ -39,10 +41,13 @@ namespace Controllers
         [Inject]
         private readonly SignalBus _signalBus;
 
-        private void Awake()
+        [Inject]
+        private BoardModel _boardModel;
+        
+        private void Awake() 
         {
             _camera = Camera.main;
-            _signalBus.Subscribe<StartBattleSignal>(OnBattleStart);
+           // _signalBus.Subscribe<StartBattleSignal>(OnBattleStart);
         }
 
         private void OnBattleStart()
@@ -50,9 +55,14 @@ namespace Controllers
             _running = true;
         }
 
+        private void SaveConfiguration()
+        {
+            _boardModel.SavePlayerConfiguration();
+        }
+
         private void TavernMove()
         {
-             if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1"))
             {
                 var ray = _camera.ScreenPointToRay(Input.mousePosition);
                 if (Physics.Raycast(ray, out RaycastHit hit, 100000, unitLayer))
@@ -93,6 +103,7 @@ namespace Controllers
                             platform.SetUnit(_selectedUnit);
                             _selectedUnit.transform.position = platform.transform.position;
                             _selectedUnit = null;
+                            SaveConfiguration();
                         }
                     }
                     else
@@ -116,7 +127,7 @@ namespace Controllers
                 }
             }
         }
-
+        
         private void PrepareMove()
         {
             if (Input.GetButtonDown("Fire1"))
@@ -149,6 +160,7 @@ namespace Controllers
                             _currentPlatform = platform;
                             _currentPlatform.SetUnit(_selectedUnit);
                             _signalBus.Fire<UnitPositionChangeSignal>();
+                            SaveConfiguration();
                         }
                     }
                     _selectedUnit.transform.position = _currentPlatform.transform.position;
