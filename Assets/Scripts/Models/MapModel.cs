@@ -1,4 +1,5 @@
 ﻿using Common.Map;
+using Controllers;
 using DG.Tweening;
 using Factories;
 using UnityEngine;
@@ -12,6 +13,9 @@ namespace Models
     {
         [Inject]
         private MapIconFactory _mapIconFactory;
+
+        [Inject]
+        private LoadingScreenController _loadingScreenController;
         
         private readonly MapSettings _mapSettings;
         public bool IsMapOpened { get; private set; }
@@ -49,6 +53,7 @@ namespace Models
                 var button = _mapIconFactory.Create(configuration, _mapSettings.rows[0]);
                 button.GetComponent<Button>().onClick.AddListener(() =>
                 {
+                    _loadingScreenController.Open();
                     SceneManager.LoadScene("Battle");
                 });
             }

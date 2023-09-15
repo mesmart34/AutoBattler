@@ -19,16 +19,16 @@ namespace Services
         private Sequence _sequence;
         private bool _running;
 
-        [Inject]
-        private readonly UnitFacade _unitFacade;
+        /*[Inject]
+        private readonly UnitFacade _unitFacade;*/
 
 
-        public AnimationService(SpriteRenderer spriteRenderer, Sprite[] mainSprites, Texture2D[] emissionMaps)
+        public AnimationService()
         {
-            _spriteRenderer = spriteRenderer;
+            /*_spriteRenderer = spriteRenderer;
             _material = _spriteRenderer.material;
             _mainSprite = mainSprites;
-            _emissionMaps = emissionMaps;
+            _emissionMaps = emissionMaps;*/
         }
 
         public void PlayAttackAnimation(string triggerName)
@@ -43,7 +43,7 @@ namespace Services
 
         public void Initialize()
         {
-            _unitFacade.OnInitilize += OnGameStarted;
+            //_unitFacade.OnInitilize += OnGameStarted;
             _sequence = DOTween.Sequence();
         }
 
@@ -70,18 +70,18 @@ namespace Services
         public void TurnOff()
         {
             _running = false;
-            _unitFacade.StopCoroutine(AnimatorCoroutine());
+            //_unitFacade.StopCoroutine(AnimatorCoroutine());
         }
         
         private void OnGameStarted()
         {
-            _unitFacade.StartCoroutine(AnimatorCoroutine());
+           // _unitFacade.StartCoroutine(AnimatorCoroutine());
         }
 
         public void Dispose()
         {
-            _unitFacade.OnInitilize -= OnGameStarted;
-            _unitFacade.StopCoroutine(AnimatorCoroutine());
+            /*_unitFacade.OnInitilize -= OnGameStarted;
+            _unitFacade.StopCoroutine(AnimatorCoroutine());*/
             _sequence.Kill();
         }
     }

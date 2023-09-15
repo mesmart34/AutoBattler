@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using Code.Unit;
 using Common;
 using Common.Unit;
+using Contracts;
 using Controllers;
 using Factories;
-using Scripts.Common.Unit;
 using Services;
 using Signals;
+using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
+using IInitializable = Zenject.IInitializable;
 using Random = UnityEngine.Random;
 
 namespace Models
@@ -17,17 +19,17 @@ namespace Models
     [Serializable]
     public class UnitModel : IInitializable
     {
-        private readonly SpriteRenderer _spriteRenderer;
-        private readonly UnitConfiguration _unitConfiguration;
-        private readonly Canvas _canvas;
+        private Canvas _canvas;
         private GameObject _bars;
+        public UnitData UnitData { get; private set; }
 
+        [Inject]
+        protected UnitSettings UnitSettings;
+        
+        /*
         [Inject]
         private BoardModel _boardModel;
 
-        [Inject]
-        private readonly SignalBus _signalBus;
-        
         [Inject]
         private readonly HealthService _healthService;
         
@@ -47,100 +49,90 @@ namespace Models
         private readonly DamagePopupFactory _damagePopupFactory;
 
         [Inject]
-        private EffectController _effectController;
+        private EffectController _effectController;*/
 
-        public UnitModel(UnitSettings unitSettings)
+        public void SetupWithUnitData(UnitData unitData)
         {
-            _unitConfiguration = unitSettings.unitConfiguration;
-            _spriteRenderer = unitSettings.spriteRenderer;
-            _spriteRenderer.sprite = unitSettings.unitConfiguration.sprite[0];
-            _canvas = unitSettings.canvas;
-            _bars = unitSettings.bars;
+            UnitData = unitData;
         }
-        
-        public UnitState UnitState { get; set; } = UnitState.Tavern;
-        public bool IsEnemy => _unitConfiguration.isEnemy;
 
-        public bool IsAlive => _healthService.IsAlive;
+        public UnitState UnitState { get; set; } = UnitState.Tavern;
 
         public bool FindNearestTarget { get; set; }
         
-        public string Name => _unitConfiguration.name;
 
         private void Die()
         {
-            _boardModel.OnSomeUnitDie();
+            /*_boardModel.OnSomeUnitDie();
             _signalBus.Fire<UnitDieSignal>();
             _unitFacade.Die();
-            TurnOff();
+            TurnOff();*/
         }
 
         public void SetManaServiceActive(bool value)
         {
-            if (value)
+            /*if (value)
             {
                 _manaService.TurnOn();
             }
             else
             {
                 _manaService.TurnOff();
-            }
+            }*/
         }
 
         public void ApplyDamage(int damageAmount, DamageType damageType = DamageType.Physical)
         {
-            _healthService?.ApplyDamage(damageAmount);
+            /*_healthService?.ApplyDamage(damageAmount);
             _animationService?.PlayRecieveDamageAnimation();
-            _damagePopupFactory.Create(damageAmount, Color.white, _canvas, 5.0f);
+            _damagePopupFactory.Create(damageAmount, Color.white, _canvas, 5.0f);*/
         }
 
         public void ApplyDamageByEffect(int damageAmount, DamageType damageType = DamageType.Physical)
         {
-            _healthService?.ApplyDamage(damageAmount);
+            /*_healthService?.ApplyDamage(damageAmount);
             //_animationService?.PlayRecieveDamageAnimation();
-            _damagePopupFactory.Create(damageAmount, Color.white, _canvas, 5.0f);
+            _damagePopupFactory.Create(damageAmount, Color.white, _canvas, 5.0f);*/
         }
 
-        public void Initialize()
+        public virtual void Initialize()
         {
-            _spriteRenderer.sprite = _unitConfiguration.sprite[0];
+            _canvas = UnitSettings.canvas;
+            _bars = UnitSettings.bars;
+            /*_spriteRenderer.sprite = _unitConfiguration.sprite[0];
             _healthService.SetMaxHealth(_unitConfiguration.health);
             _healthService.OnHealthValueChanged += OnHealthChanged;
-            _bars.SetActive(false);
-            /*_effectService.AddEffect(new BurnEffect());
-            effectController.AddEffect();*/
-           // _signalBus.Subscribe<StartBattleSignal>(StartBattle);
-            //_signalBus.Subscribe<StopBattleSignal>(TurnOff);
+            _bars.SetActive(false);*/
         }
 
         private void OnHealthChanged(int value, int maxValue)
         {
-            if (value == 0)
+            /*if (value == 0)
             {
                 Die();
-            }
+            }*/
         }
 
         private void TurnOff()
         {
-            _manaService.TurnOff();
+            /*_manaService.TurnOff();
             _attackService.TurnOff();
             _animationService.TurnOff();
-            _effectController.Deactivate();
+            _effectController.Deactivate();*/
         }
 
         public void PrepareMode()
         {
-            UnitState = UnitState.Idle;
+            /*UnitState = UnitState.Idle;
             _attackService.FindTarget();
-            _bars.SetActive(true);
+            _bars.SetActive(true);*/
         }
 
         public void StartBattle()
         {
-            _manaService.TurnOn();
+            /*_manaService.TurnOn();
             _attackService.TurnOn();
-            _effectController.Activate();
+            _effectController.Activate();*/
         }
     }
 }

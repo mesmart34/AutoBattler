@@ -21,18 +21,18 @@ namespace Controllers
         private readonly Dictionary<string, EffectModel> _singleEffects = new();
         private readonly List<EffectModel> _effects = new();
 
-        [Inject]
+        /*[Inject]
         private EffectFactory _effectFactory;
 
         [Inject]
         private UnitModel _unitModel;
 
         [Inject]
-        private BoardModel _boardModel;
+        private BoardModel _boardModel;*/
 
         private void Start()
         {
-            _effectFactory.Load();
+           // _effectFactory.Load();
         }
 
         public bool TryFindAndAddEffect(string effectName)
@@ -93,7 +93,7 @@ namespace Controllers
             TryFindAndAddEffect("FireEffect");
             foreach (var effect in _effects)
             {
-                effect.Activate(this, _unitModel, _boardModel);
+                //effect.Activate(this, _unitModel, _boardModel);
             }
         }
         
@@ -104,7 +104,7 @@ namespace Controllers
             {
                 if (effect != null && _effectView.TryGetValue(effect, out var value))
                 {
-                    effect.Deactivate(value, _unitModel, _boardModel);
+                   // effect.Deactivate(value, _unitModel, _boardModel);
                 }
             }
         }
@@ -127,7 +127,7 @@ namespace Controllers
 
         private void AddEffectAndCreateView(EffectModel effectModel)
         {
-            var effect = _effectFactory.Create(transform);
+            /*var effect = _effectFactory.Create(transform);
             var effectView = effect.GetComponent<EffectView>();
             effectView.GetComponent<Image>().sprite = effectModel.EffectSettings.Sprite;
             effectModel.OnTick += effectView.Highlight;
@@ -140,7 +140,7 @@ namespace Controllers
             if (_activated)
             {
                 effectModel.Activate(effectView, _unitModel, _boardModel);
-            }
+            }*/
         }
     }
 }

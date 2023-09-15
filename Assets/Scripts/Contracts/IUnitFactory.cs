@@ -1,5 +1,5 @@
 ﻿using Common;
-using Scripts.Common.Unit;
+using Common.Unit;
 using UnityEngine;
 
 namespace Contracts

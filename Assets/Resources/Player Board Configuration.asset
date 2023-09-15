@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   units:
   - name: Knight
-    position: {x: 0, y: 1}
-  - name: Bard
-    position: {x: 0, y: 3}
-  - name: Paladin
     position: {x: 1, y: 2}
+  - name: Afro
+    position: {x: 1, y: 0}
+  - name: Paladin
+    position: {x: 0, y: 2}

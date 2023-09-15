@@ -3,7 +3,6 @@ using Common.Board;
 using Contracts;
 using Factories;
 using Models;
-using Scripts.Common.Unit;
 using UnityEngine;
 using Zenject;
 
@@ -28,10 +27,9 @@ namespace Installers
         
         private void BindFactory()
         {
-            Container
-                .Bind<IUnitFactory>()
-                .To<UnitFactory>()
-                .AsSingle();
+            /*Container
+                .Bind<UnitFactory>()
+                .AsSingle();*/
             
             Container
                 .Bind<PlatformFactory>()

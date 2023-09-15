@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Common.Unit;
+using UnityEngine;
 using UnityEngine.Serialization;
 
 namespace Common.Board
@@ -28,6 +29,7 @@ namespace Common.Board
         {
             unitFacade = unit;
             unitFacade.Platform = this;
+            unitFacade.transform.position = transform.position;
             Busy = true;
         }
     }

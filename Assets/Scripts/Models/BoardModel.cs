@@ -4,6 +4,7 @@ using System.Linq;
 using System.Numerics;
 using Common;
 using Common.Board;
+using Common.Unit;
 using Contracts;
 using Controllers;
 using DG.Tweening;
@@ -17,7 +18,7 @@ using Vector3 = UnityEngine.Vector3;
 
 namespace Models
 {
-    public class BoardModel : IInitializable
+    public class BoardModel
     {
         private bool _battling;
         private Transform _transform;
@@ -30,8 +31,8 @@ namespace Models
         [Inject]
         private SignalBus _signalBus;
 
-        [Inject]
-        private IUnitFactory _unitFactory;
+        /*[Inject]
+        private IUnitFactory _unitFactory;*/
 
         [Inject]
         private readonly BoardSettings _boardSettings;
@@ -54,7 +55,7 @@ namespace Models
         {
             if (_boardSettings.isTavern)
                 return;
-            setup();
+            //setup();
             _battling = true;
             foreach (var enemy in Enemies)
             {
@@ -67,7 +68,7 @@ namespace Models
             }
         }
 
-        public UnitFacade FindEnemy(bool nearest = true)
+        /*public UnitFacade FindEnemy(bool nearest = true)
         {
             return nearest
                 ? Enemies.OrderBy(x => x.Platform.position.x).FirstOrDefault(x => x.IsAlive)
@@ -104,7 +105,7 @@ namespace Models
             /*_signalBus.Subscribe<UnitPositionChangeSignal>(() =>
             {
                 FindTargetsForAllUnits();
-            });*/
+            });#1#
 
 
             var distanceBetweenSides = _boardSettings.distanceBetweenSides;
@@ -136,7 +137,7 @@ namespace Models
             SpawnEnemyUnit("Nigger");
             SpawnEnemyUnit("Fire Worm");
     
-            FindTargetsForAllUnits();*/
+            FindTargetsForAllUnits();#1#
 
             //_playerUIController.ShowBeginAutoBattlePanel("Afro");
         }
@@ -151,7 +152,7 @@ namespace Models
             {
                 unit.FindTarget();
             }
-        }*/
+        }#1#
         
         private List<PlatformFacade> CreateBoardSide(Vector3 offset, bool invertSides = false)
         {
@@ -286,6 +287,6 @@ namespace Models
                     name = playerPlatform.unitFacade.Name
                 });
             }
-        }
+        }*/
     }
 }

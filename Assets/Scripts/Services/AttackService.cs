@@ -1,5 +1,6 @@
 ﻿using System;
 using Common;
+using Common.Unit;
 using Models;
 using Scripts.Signals;
 using UnityEngine;
@@ -13,15 +14,16 @@ namespace Services
         private readonly float _attackTimeout;
         private float _attackTimeoutTimer;
         private int _attackStrength;
+        
         public event Action<float, float> OnAttackTimeoutValueChange;
 
-        [Inject]
+        /*[Inject]
         private readonly SignalBus _signalBus;
 
         [Inject]
-        private AnimationService _animationService;
+        private AnimationService _animationService;*/
 
-        [Inject]
+        /*[Inject]
         private HealthService _healthService;
 
         [Inject]
@@ -30,21 +32,24 @@ namespace Services
         [Inject]
         private readonly UnitFacade _unitFacade;
 
+        [Inject]
+        private UnitModel _unitModel;*/
+
         public UnitFacade _target { get; private set; }
 
 
         private bool _running;
 
 
-        public AttackService(float attackTimeout, int attackStrength)
+        public AttackService()
         {
-            _attackTimeout = attackTimeout;
-            _attackStrength = attackStrength;
+            /*_attackTimeout = _unitModel.UnitData.attackTimeout;
+            _attackStrength = _unitModel.UnitData.attackStrength;*/
         }
 
         private void Attack()
         {
-            _animationService.PlayAttackAnimation(AnimatorAttackTrigger);
+            //_animationService.PlayAttackAnimation(AnimatorAttackTrigger);
             _target.ApplyDamage(_attackStrength);
         }
 
@@ -55,13 +60,13 @@ namespace Services
         
         public void FindTarget()
         {
-            _target = _unitFacade.IsEnemy ? _board.FindPlayer(_unitFacade) : _board.FindEnemy();
+            /*_target = _unitFacade.IsEnemy ? _board.FindPlayer(_unitFacade) : _board.FindEnemy();*/
         }
 
 
         public void Tick()
         {
-            if (!_running)
+            /*if (!_running)
                 return;
             if (_target == null || !_target.IsAlive)
             {
@@ -77,7 +82,7 @@ namespace Services
                 Attack();
             }
 
-            OnAttackTimeoutValueChange?.Invoke(_attackTimeoutTimer, _attackTimeout);
+            OnAttackTimeoutValueChange?.Invoke(_attackTimeoutTimer, _attackTimeout);*/
         }
 
         public void TurnOn()

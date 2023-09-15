@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using Common.Board;
+using Common.Hero;
+using Common.Unit.Hero;
 using Contracts;
 using Factories;
 using Models;
@@ -10,32 +12,46 @@ using Zenject;
 
 namespace Common.Tavern
 {
-    public class TavernUnitSpawner : MonoBehaviour
+    public class TavernUnitSpawner : IInitializable
     {
-        [SerializeField]
-        private PlayerBoardConfiguration _playerBoardConfiguration;
-
-        [SerializeField]
-        private List<TavernUnitWrapper> _unitsToSpawn = new ();
-        
         [Inject]
-        private IUnitFactory _unitFactory;
-        
-        private void Start()
+        private UnitFactory _unitFactory;
+
+        [Inject]
+        private TavernSettings _tavernSettings;
+
+        [Inject]
+        private PlatformSpawner _platformSpawner;
+
+        public void Initialize()
         {
-            var units = _unitsToSpawn.Where(x => !_playerBoardConfiguration.units.Any(y => y.name == x.name));
-            foreach (var unit in units)
-            {
-                _unitFactory.Create(unit.name, false, unit.spawnPointTransform);
-            }
+            _unitFactory.Load();
         }
+        
+        public List<HeroFacade> SpawnUnits()
+        {
+            var heroes = new List<HeroFacade>();
+            var unitsOnBoard = _tavernSettings.playerBoardConfiguration.units;
+            foreach (var tavernHero in _tavernSettings.heroesToSpawn)
+            {
+                if (unitsOnBoard.Any(x => x.name == tavernHero.hero.name))
+                {
+                    var pos = unitsOnBoard.FirstOrDefault(x => x.name == tavernHero.hero.name)?.position;
+                    if(pos == null)
+                        continue;
+                    var platform = _platformSpawner.platforms[pos.Value];
+                    var transform = platform.transform;
+                    var unitFacade = _unitFactory.CreateHero(tavernHero.hero, transform.position, _tavernSettings.heroesParent);
+                    heroes.Add(unitFacade);   
+                    platform.SetUnit(unitFacade);
+                }
+                else
+                {
+                    heroes.Add(_unitFactory.CreateHero(tavernHero.hero, tavernHero.spawnPoint.position, _tavernSettings.heroesParent));
+                }
+            }
 
-    }
-
-    [Serializable]
-    public class TavernUnitWrapper
-    {
-        public string name;
-        public Transform spawnPointTransform;
+            return heroes;
+        }
     }
 }

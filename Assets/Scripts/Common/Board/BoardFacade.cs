@@ -26,7 +26,7 @@ namespace Common.Board
 
         public void Ready()
         {
-            _boardModel.Ready();
+            //_boardModel.Ready();
         }
 
         public void NextEnemy()

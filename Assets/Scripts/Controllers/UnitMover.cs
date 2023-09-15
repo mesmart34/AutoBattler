@@ -4,6 +4,7 @@ using Code.Unit;
 using Common;
 using Common.Board;
 using Common.Tavern;
+using Common.Unit;
 using JetBrains.Annotations;
 using Models;
 using Scripts.Signals;
@@ -57,7 +58,7 @@ namespace Controllers
 
         private void SaveConfiguration()
         {
-            _boardModel.SavePlayerConfiguration();
+            //_boardModel.SavePlayerConfiguration();
         }
 
         private void TavernMove()
@@ -79,8 +80,8 @@ namespace Controllers
                         {
                             _unitInitialPositions[unitFacade] = _unitPosition;
                         }
-                        if (unitFacade.IsEnemy)
-                            return;
+                        /*if (unitFacade.IsEnemy)
+                            return;*/
                         _selectedUnit = unitFacade;
                     }
                 }
@@ -139,8 +140,8 @@ namespace Controllers
                     {
                         var unitFacade = hit.collider.gameObject.GetComponent<UnitFacade>();
                         _unitPosition = unitFacade.transform.position;
-                        if (unitFacade.IsEnemy)
-                            return;
+                        /*if (unitFacade.IsEnemy)
+                            return;*/
                         _selectedUnit = unitFacade;
                         _currentPlatform = unitFacade.Platform;
                     }

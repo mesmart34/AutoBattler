@@ -1,24 +1,20 @@
-﻿using Common;
-using Common.Unit;
+﻿using Common.Unit;
 using Factories;
-using Models;
-using Scripts.Common.Unit;
-using Scripts.Signals;
 using Services;
 using UnityEngine;
 using Zenject;
 
 namespace Installers
 {
-    public class UnitInstaller : MonoInstaller, IInitializable
+    public abstract class UnitInstaller : MonoInstaller, IInitializable
     {
         [SerializeField]
         public UnitSettings unitSettings;
 
         public override void InstallBindings()
         {
+            Container.BindInstance(unitSettings).AsSingle().NonLazy();
             BindUnit();
-            BindUnitSignals();
             BindUnitServices();
             BindFactories();
         }
@@ -43,35 +39,14 @@ namespace Installers
             Container
                 .BindInterfacesAndSelfTo<AttackService>()
                 .AsSingle()
-                .WithArguments(unitSettings.unitConfiguration.attackTimeout, unitSettings.unitConfiguration.attackStrength)
                 .NonLazy();
             Container
                 .BindInterfacesAndSelfTo<AnimationService>()
                 .AsSingle()
-                .WithArguments(unitSettings.spriteRenderer, unitSettings.unitConfiguration.sprite, unitSettings.unitConfiguration.emissionMap)
                 .NonLazy();
         }
 
-        private void BindUnitSignals()
-        {
-            Container
-                .DeclareSignal<UnitMouseEnterSignal>();
-            Container
-                .DeclareSignal<UnitMouseExitSignal>();
-        }
-
-        private void BindUnit()
-        {
-            Container
-                .BindInterfacesAndSelfTo<UnitModel>()
-                .AsSingle()
-                .WithArguments(unitSettings)
-                .NonLazy();
-            Container
-                .BindInterfacesTo<UnitInstaller>()
-                .FromInstance(this)
-                .AsSingle();
-        }
+        protected abstract void BindUnit();
 
         public void Initialize()
         {

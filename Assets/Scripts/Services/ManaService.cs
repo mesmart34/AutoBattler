@@ -1,6 +1,5 @@
 ﻿using System;
 using Common.Unit;
-using Scripts.Common.Unit;
 using Scripts.Signals;
 using Signals;
 using UnityEngine;
@@ -23,9 +22,9 @@ namespace Services
 
         public ManaService(UnitSettings unitSettings)
         {
-            _mana = unitSettings.unitConfiguration.mana;
+            /*_mana = unitSettings.unitConfiguration.mana;
             _maxMana = unitSettings.unitConfiguration.mana;
-            _regenAmount = unitSettings.unitConfiguration.manaRegenerationAmount;
+            _regenAmount = unitSettings.unitConfiguration.manaRegenerationAmount;*/
         }
         
         

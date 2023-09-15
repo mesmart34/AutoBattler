@@ -9,18 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b39371ddd87f47109ba8aedfc43bf695, type: 3}
+  m_Script: {fileID: 11500000, guid: eb969facc796412b97742bea0d8b7e2a, type: 3}
   m_Name: Afro
   m_EditorClassIdentifier: 
-  name: Afro
-  isEnemy: 0
-  health: 600
-  physicsShield: 3
-  magicShield: 7
-  mana: 70
-  manaRegenerationAmount: 5
-  attackTimeout: 1.9
-  attackStrength: 90
-  sprite:
-  - {fileID: 21300000, guid: b7b80b4e07c8a184d8acd039b925f03c, type: 3}
-  emissionMap: []
+  unitData:
+    name: Afro
+    health: 0
+    physicsShield: 0
+    magicShield: 0
+    mana: 0
+    manaRegenerationAmount: 0
+    attackTimeout: 0
+    attackStrength: 0
+    sprite:
+    - {fileID: 21300000, guid: b7b80b4e07c8a184d8acd039b925f03c, type: 3}
+    emissionMap:
+    - {fileID: 2800000, guid: be8565350c71f9548b2643971cd70fc7, type: 3}
+    - {fileID: 2800000, guid: 99c3de6b4de28c04b98e0ccb72be6547, type: 3}
+    - {fileID: 2800000, guid: 00555ff8009e82b45a697a3eafba5fd1, type: 3}

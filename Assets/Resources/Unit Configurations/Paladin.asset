@@ -9,20 +9,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b39371ddd87f47109ba8aedfc43bf695, type: 3}
+  m_Script: {fileID: 11500000, guid: eb969facc796412b97742bea0d8b7e2a, type: 3}
   m_Name: Paladin
   m_EditorClassIdentifier: 
-  name: Paladin
-  isEnemy: 0
-  health: 700
-  physicsShield: 12
-  magicShield: 10
-  mana: 120
-  manaRegenerationAmount: 2
-  attackTimeout: 1.8
-  attackStrength: 65
-  sprite:
-  - {fileID: 823984747, guid: b0233534f3c64014bb38b107cd6d388d, type: 3}
-  - {fileID: -1416623416, guid: b0233534f3c64014bb38b107cd6d388d, type: 3}
-  - {fileID: 412147947, guid: b0233534f3c64014bb38b107cd6d388d, type: 3}
-  emissionMap: []
+  unitData:
+    name: Paladin
+    health: 0
+    physicsShield: 0
+    magicShield: 0
+    mana: 0
+    manaRegenerationAmount: 0
+    attackTimeout: 0
+    attackStrength: 0
+    sprite:
+    - {fileID: 823984747, guid: b0233534f3c64014bb38b107cd6d388d, type: 3}
+    emissionMap:
+    - {fileID: 2800000, guid: be8565350c71f9548b2643971cd70fc7, type: 3}
+    - {fileID: 2800000, guid: 99c3de6b4de28c04b98e0ccb72be6547, type: 3}
+    - {fileID: 2800000, guid: 00555ff8009e82b45a697a3eafba5fd1, type: 3}
