@@ -1,4 +1,5 @@
 ﻿using System;
+using Common.Map;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -7,8 +8,9 @@ namespace Common.Board
     [Serializable]
     public class BoardSettings
     {
+        [FormerlySerializedAs("enemyBoardConfiguration")]
         [SerializeField]
-        public EnemyBoardConfiguration enemyBoardConfiguration;
+        public LevelConfiguration levelConfiguration;
         
         [SerializeField]
         public PlayerBoardConfiguration playerBoardConfiguration;

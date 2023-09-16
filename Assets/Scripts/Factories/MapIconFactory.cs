@@ -1,4 +1,5 @@
 ﻿using Common.Board;
+using Common.Map;
 using UnityEngine;
 using Zenject;
 
@@ -20,7 +21,7 @@ namespace Factories
             _prefab = Resources.Load("Prefabs/MapButton");
         }
         
-        public GameObject Create(EnemyBoardConfiguration boardConfiguration, Transform parent)
+        public GameObject Create(Transform parent)
         {
             var effect = _diContainer.InstantiatePrefab(_prefab, Vector3.zero, Quaternion.identity, parent);
             var rect = effect.GetComponent<RectTransform>();

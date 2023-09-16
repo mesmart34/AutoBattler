@@ -27,12 +27,8 @@ namespace Common.Tavern
 
         public void Tick()
         {
-            if (EventSystem.current.IsPointerOverGameObject())
-            {
-                //TODO consider another way of blocking raycast when cursor over ui
-                return;
-            }
-            if (Input.GetButtonDown("Fire1"))
+            var overUI = EventSystem.current.IsPointerOverGameObject();
+            if (Input.GetButtonDown("Fire1") && !overUI)
             {
                 MouseDown();
             } else if (Input.GetButtonUp("Fire1"))
