@@ -7,8 +7,6 @@ using Common.Tavern;
 using Common.Unit;
 using JetBrains.Annotations;
 using Models;
-using Scripts.Signals;
-using Signals;
 using UnityEditor.PackageManager;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -160,7 +158,7 @@ namespace Controllers
                             _currentPlatform.Clear();
                             _currentPlatform = platform;
                             _currentPlatform.SetUnit(_selectedUnit);
-                            _signalBus.Fire<UnitPositionChangeSignal>();
+                            //_signalBus.Fire<UnitPositionChangeSignal>();
                             SaveConfiguration();
                         }
                     }

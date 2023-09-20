@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb47b272bb649ca8253b24b8b2bc7f7, type: 3}
   m_Name: Fire Worm Level
   m_EditorClassIdentifier: 
-  name: Fire Worm
+  name: "\u041E\u0433\u043D\u0435\u043D\u043D\u044B\u0439 \u0447\u0435\u0440\u0432\u044C"
   enemies:
   - enemyConfiguration: {fileID: 11400000, guid: 3929d0c0757e58746a30bfd290738a10, type: 2}
     position: {x: 0, y: 2}

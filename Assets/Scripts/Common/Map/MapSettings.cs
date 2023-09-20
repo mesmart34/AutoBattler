@@ -14,11 +14,14 @@ namespace Common.Map
         public RectTransform mapRectTransform;
         public GameObject view;
         public RectTransform[] rows;
+        public MapState mapState;
         
         public Sprite enemyIcon;
         public Sprite bossIcon;
         public Color iconColorLevelPassed;
         public Color iconColorLevelCurrent;
         public Color iconColorLevelNext;
+
+        public PlayerConfiguration playerConfiguration;
     }
 }

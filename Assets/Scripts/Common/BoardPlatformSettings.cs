@@ -9,6 +9,5 @@ namespace Common
         public Vector2Int boardPlayerSideSize;
         public Vector2Int size;
         public float spacing = 10.0f;
-        public float distanceBetweenSides = 1;
     }
 }

@@ -1,11 +1,9 @@
 ﻿using System.Linq;
-using Common;
 using Common.Enemy;
 using Common.Unit;
+using Common.Unit.Enemy;
 using Common.Unit.Hero;
-using Contracts;
 using Installers;
-using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
@@ -27,12 +25,18 @@ namespace Factories
 
         public void Load()
         {
-            _unitConfigurations = Resources.LoadAll<UnitConfiguration>("Unit Configurations");
+            _unitConfigurations = Resources.LoadAll<UnitConfiguration>("Hero Configurations");
            // _enemyConfigurations = Resources.LoadAll<EnemyConfiguration>("Enemy Configurations");
             _heroPrefab = Resources.Load("Prefabs/Hero");
-            //_enemyPrefab = Resources.Load("Prefabs/Enemy");
+            _enemyPrefab = Resources.Load("Prefabs/Enemy");
         }
 
+        public HeroFacade CreateHeroByName(string name, Vector3 position, Transform parent)
+        {
+            var unitConfiguration = _unitConfigurations.FirstOrDefault(x => x.unitData.name == name);
+            return CreateHero(unitConfiguration, position, parent);
+        }
+        
         public HeroFacade CreateHero(UnitConfiguration unitConfiguration, Vector3 position, Transform parent)
         {
             var unitData = unitConfiguration.unitData;
@@ -48,10 +52,34 @@ namespace Factories
                 magicShield = unitData.magicShield,
                 emissionMap = unitData.emissionMap,
                 physicsShield = unitData.physicsShield,
-                manaRegenerationAmount = unitData.manaRegenerationAmount
+                manaRegenerationAmount = unitData.manaRegenerationAmount,
+                locked = unitData.locked
             });
             unitFacade.transform.position = position;
             return unitFacade;
+        }
+
+        public EnemyFacade CreateEnemy(EnemyConfiguration unitEnemyConfiguration, Vector3 position, Transform parent)
+        {
+            var unitData = unitEnemyConfiguration.unitData;
+            var data = new UnitData()
+            {
+                name = unitData.name,
+                health = unitData.health,
+                mana = unitData.mana,
+                sprite = unitData.sprite,
+                attackStrength = unitData.attackStrength,
+                attackTimeout = unitData.attackTimeout,
+                magicShield = unitData.magicShield,
+                emissionMap = unitData.emissionMap,
+                physicsShield = unitData.physicsShield,
+                manaRegenerationAmount = unitData.manaRegenerationAmount,
+                locked = unitData.locked
+            };
+            var enemyFacade = _diContainer.InstantiatePrefabForComponent<EnemyFacade>(_enemyPrefab, parent);
+            enemyFacade.SetUnitData(data);
+            enemyFacade.transform.position = position;
+            return enemyFacade;
         }
     }
 }

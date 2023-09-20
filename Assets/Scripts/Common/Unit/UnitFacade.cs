@@ -1,7 +1,9 @@
 ﻿using System;
 using Common.Board;
 using Models;
+using Services;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using Zenject;
 
 namespace Common.Unit
@@ -12,40 +14,9 @@ namespace Common.Unit
         private Material _material;
         private bool _dragged;
         private bool _lineVisible;
-        //private SpriteRenderer _spriteRenderer;
-        public PlatformFacade Platform { get; set; }
-        public event Action OnInitilize;
-
-        /*[Inject]
-        private SignalBus _signalBus;
-
-        [Inject]
-        private HealthService _healthService;
-
-        [Inject]
-        private AttackService _attackService;
-
-        [Inject]
-        private UnitModel _unitModel;
-
-        [Inject]
-        private UnitMover _unitMover;
-
-        [Inject]
-        private BarController _barController;*/
-
-        /*
-        public UnitFacade Target
-        {
-            get => _attackService._target;
-        }
-
-        public bool FindNearestTarget
-        {
-            get => _unitModel.FindNearestTarget;
-        }
-        */
         
+        public PlatformFacade Platform { get; set; }
+
         [Inject]
         private UnitModel _unitModel;
 
@@ -53,20 +24,25 @@ namespace Common.Unit
         private UnitSettings _unitSettings;
 
         [Inject]
-        public void Construct()
-        {
-            
-        }
+        private UnitHighlighter _unitHighlighter;
+
+        [Inject]
+        private HealthService _healthService;
 
         public UnitData UnitData => _unitModel.UnitData;
 
+        public bool IsAlive => _unitModel.IsAlive;
+        
+        public Action OnUnitDie;
+        
         private void Awake()
         {
             _lineVisible = true;
-            /*_spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-            _material = _spriteRenderer.material;*/
-            OnInitilize?.Invoke();
-            /*_signalBus.Subscribe<StartBattleSignal>(OnBattleStart);*/
+            _material = _unitSettings.spriteRenderer.material;
+            _healthService.OnHealthValueChanged += (int current, int max) =>
+            {
+                OnUnitDie?.Invoke();
+            };
         }
 
         public void SetUnitData(UnitData unitData)
@@ -75,24 +51,24 @@ namespace Common.Unit
             _unitSettings.spriteRenderer.sprite = unitData.sprite[0];
         }
 
-        public void PrepareMode()
+        public void ApplyDamage(int damage) 
         {
-           // _unitModel.PrepareMode();
+            _unitModel.ApplyDamage(damage);
         }
-
-        public void ApplyDamage(int damage)
+        
+        public virtual void OnMouseEnter()
         {
-            //_unitModel.ApplyDamage(damage);
-        }
-
-        private void OnMouseEnter()
-        {
-            //_material.SetInt("_outline", 1);
+            if (EventSystem.current.IsPointerOverGameObject())
+            {
+                return;
+            }
+            
+            _unitHighlighter.ShowHighlight ();
         }
 
         private void OnMouseExit()
         {
-           // _material.SetInt("_outline", 0);
+            _unitHighlighter.HideHighlight();
         }
 
         private void Update()
@@ -124,18 +100,19 @@ namespace Common.Unit
 
         public void FindTarget()
         {
-            /*_attackService.FindTarget();*/
+            _unitModel.FindTarget();
         }
 
-        public void StartBattle()
+        public void BeginBattle()
         {
-            /*_unitModel.StartBattle();
-            _lineVisible = false;*/
+            _unitModel.SetBarsActive(true);
+            _unitModel.Activate();
         }
 
-        public void BattleEnd()
+        public void EndBattle()
         {
-            //_lineVisible = true;
+            _unitModel.SetBarsActive(false);
+            _unitModel.Deactivate();
         }
 
         private void DrawLineToTarget()

@@ -1,7 +1,6 @@
 ﻿using System;
 using Common.Unit;
-using Scripts.Signals;
-using Signals;
+using Models;
 using UnityEngine;
 using Zenject;
 
@@ -9,58 +8,61 @@ namespace Services
 {
     public class ManaService : ITickable
     {
-        public event Action<int, int> OnManaValueChanged;  
+        private readonly UnitModel _unitModel;
         private int _maxMana;
         private int _mana;
-        private float _timer;
+        private float _time;
         private int _regenAmount;
         private bool _running;
-        
-        [Inject]
-        private readonly SignalBus _signalBus;
 
+        public Action<int, int> OnManaValueChanged;
+        public Action OnManaRestored;
 
-        public ManaService(UnitSettings unitSettings)
-        {
-            /*_mana = unitSettings.unitConfiguration.mana;
-            _maxMana = unitSettings.unitConfiguration.mana;
-            _regenAmount = unitSettings.unitConfiguration.manaRegenerationAmount;*/
-        }
-        
-        
         public void SetMaxMana(int maxMana)
         {
             _maxMana = maxMana;
             _mana = maxMana;
         }
 
-        public void TurnOn()
+        public void Activate(UnitData unitData)
         {
+            _mana = unitData.mana;
+            _maxMana =  unitData.mana;
+            _regenAmount =  unitData.manaRegenerationAmount;
             _running = true;
         }
 
-        public void TurnOff()
+        public void Deactivate()
         {
             _running = false;
         }
-
+        
         public void Tick()
         {
             if (!_running)
-                return;
-            _timer += Time.deltaTime;
-            if (_timer >= 1)
             {
-                _mana += _regenAmount;
-                _mana = Math.Clamp(_mana, 0, _maxMana);
-                if (_mana == _maxMana)
-                {
-                    _mana = 0;
-                }
-
-                OnManaValueChanged?.Invoke(_mana, _maxMana);
-                _timer = 0;
+                return;
             }
+            
+            _time += Time.deltaTime;
+
+            if (_time <= 1.0f)
+            {
+                return;
+            }
+            
+            _mana += _regenAmount;
+            _mana = Math.Clamp(_mana, 0, _maxMana);
+            
+            if (_mana == _maxMana)
+            {
+                OnManaRestored?.Invoke();
+                _mana = 0;
+            }
+
+            OnManaValueChanged?.Invoke(_mana, _maxMana);
+            
+            _time = 0;
         }
     }
 }

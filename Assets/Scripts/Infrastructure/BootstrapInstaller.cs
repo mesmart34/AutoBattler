@@ -1,8 +1,6 @@
 using DG.Tweening;
 using Factories;
 using Installers;
-using Scripts.Signals;
-using Signals;
 using Zenject;
 
 namespace Infrastructure
@@ -13,15 +11,12 @@ namespace Infrastructure
         {
             SignalBusInstaller.Install(Container);
             Container.Bind<UnitFactory>().AsSingle().NonLazy();
-            Container.DeclareSignal<StartBattleSignal>();
-            Container.DeclareSignal<UnitDieSignal>();
-            Container.DeclareSignal<StopBattleSignal>();
-            Container.DeclareSignal<UnitPositionChangeSignal>();
             Container.BindInterfacesTo<BootstrapInstaller>().FromInstance(this).AsSingle().NonLazy();
         }
 
         public void Initialize()
         {
+            Container.Resolve<UnitFactory>().Load();
             DOTween.Init();
         }
     }

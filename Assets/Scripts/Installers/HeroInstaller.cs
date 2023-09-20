@@ -1,4 +1,5 @@
-﻿using Contracts;
+﻿using Common.Unit;
+using Contracts;
 using Models;
 using Zenject;
 
@@ -16,6 +17,11 @@ namespace Installers
                 .BindInterfacesTo<HeroInstaller>()
                 .FromInstance(this)
                 .AsSingle();
+        }
+
+        public HeroInstaller(UnitData unitData) : base(unitData)
+        {
+            
         }
     }
 }

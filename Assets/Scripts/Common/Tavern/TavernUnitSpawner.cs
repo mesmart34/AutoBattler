@@ -20,15 +20,12 @@ namespace Common.Tavern
         [Inject]
         private TavernSettings _tavernSettings;
 
-        [Inject]
-        private PlatformSpawner _platformSpawner;
-
         public void Initialize()
         {
-            _unitFactory.Load();
+            
         }
         
-        public List<HeroFacade> SpawnUnits()
+        public List<HeroFacade> SpawnTavernUnits(Dictionary<Vector2Int, PlatformFacade> platforms)
         {
             var heroes = new List<HeroFacade>();
             var unitsOnBoard = _tavernSettings.playerBoardConfiguration.units;
@@ -39,7 +36,7 @@ namespace Common.Tavern
                     var pos = unitsOnBoard.FirstOrDefault(x => x.name == tavernHero.hero.name)?.position;
                     if(pos == null)
                         continue;
-                    var platform = _platformSpawner.platforms[pos.Value];
+                    var platform = platforms[pos.Value];
                     var transform = platform.transform;
                     var unitFacade = _unitFactory.CreateHero(tavernHero.hero, transform.position, _tavernSettings.heroesParent);
                     heroes.Add(unitFacade);   

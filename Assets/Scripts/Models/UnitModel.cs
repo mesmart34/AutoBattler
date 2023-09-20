@@ -1,18 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using Code.Unit;
 using Common;
 using Common.Unit;
-using Contracts;
-using Controllers;
-using Factories;
 using Services;
-using Signals;
-using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
-using IInitializable = Zenject.IInitializable;
-using Random = UnityEngine.Random;
 
 namespace Models
 {
@@ -22,117 +14,123 @@ namespace Models
         private Canvas _canvas;
         private GameObject _bars;
         public UnitData UnitData { get; private set; }
+        public bool IsAlive => _healthService.IsAlive;
 
         [Inject]
         protected UnitSettings UnitSettings;
-        
-        /*
+
         [Inject]
+        private AnimationService _animationService;
+        
+        [Inject]
+        private AttackService _attackService;
+        
+        [Inject]
+        private ManaService _manaService;
+        
+        [InjectOptional]
         private BoardModel _boardModel;
 
         [Inject]
-        private readonly HealthService _healthService;
-        
-        [Inject]
-        private readonly ManaService _manaService;
-        
-        [Inject]
-        private readonly AttackService _attackService;
-        
-        [Inject]
-        private readonly AnimationService _animationService;
-        
-        [Inject]
-        private readonly UnitFacade _unitFacade;
+        private HealthService _healthService;
 
         [Inject]
-        private readonly DamagePopupFactory _damagePopupFactory;
-
-        [Inject]
-        private EffectController _effectController;*/
+        private UnitFacade _unitFacade;
 
         public void SetupWithUnitData(UnitData unitData)
         {
             UnitData = unitData;
+            _canvas = UnitSettings.canvas;
+            _bars = UnitSettings.bars;
+            _animationService.Activate(UnitData);
+            _healthService.SetMaxHealth(UnitData.health);
+            if (UnitData.locked)
+            {
+                _animationService.PlayLockedAnimation();
+            }
         }
 
-        public UnitState UnitState { get; set; } = UnitState.Tavern;
+        public void Initialize()
+        {
+            _healthService.OnHealthValueChanged += OnHealthChanged;
+            _attackService.OnTargetNeed += OnTargetDestroyed;
+        }
 
-        public bool FindNearestTarget { get; set; }
-        
+        private void OnTargetDestroyed()
+        {
+            var target = _boardModel.FindTarget(_unitFacade);
+            _attackService.SetTarget(target);
+        }
 
         private void Die()
         {
-            /*_boardModel.OnSomeUnitDie();
-            _signalBus.Fire<UnitDieSignal>();
-            _unitFacade.Die();
-            TurnOff();*/
+            _animationService.PlayDeadAnimation();
+            Deactivate();
         }
 
+        public void SetAttackServiceActive(bool value)
+        {
+            
+        }
+        
         public void SetManaServiceActive(bool value)
         {
-            /*if (value)
+            if (value)
             {
-                _manaService.TurnOn();
+                _manaService.Activate(UnitData);
             }
             else
             {
-                _manaService.TurnOff();
-            }*/
+                _manaService.Deactivate();
+            }
+        }
+
+        public void SetBarsActive(bool value)
+        {
+            _bars.SetActive(value);
         }
 
         public void ApplyDamage(int damageAmount, DamageType damageType = DamageType.Physical)
         {
-            /*_healthService?.ApplyDamage(damageAmount);
+            _healthService?.ApplyDamage(damageAmount);
             _animationService?.PlayRecieveDamageAnimation();
-            _damagePopupFactory.Create(damageAmount, Color.white, _canvas, 5.0f);*/
+            //_damagePopupFactory.Create(damageAmount, Color.white, _canvas, 5.0f);
         }
 
         public void ApplyDamageByEffect(int damageAmount, DamageType damageType = DamageType.Physical)
         {
-            /*_healthService?.ApplyDamage(damageAmount);
-            //_animationService?.PlayRecieveDamageAnimation();
-            _damagePopupFactory.Create(damageAmount, Color.white, _canvas, 5.0f);*/
+            _healthService?.ApplyDamage(damageAmount);
+            _animationService?.PlayRecieveDamageAnimation();
+            //_damagePopupFactory.Create(damageAmount, Color.white, _canvas, 5.0f);
         }
 
-        public virtual void Initialize()
-        {
-            _canvas = UnitSettings.canvas;
-            _bars = UnitSettings.bars;
-            /*_spriteRenderer.sprite = _unitConfiguration.sprite[0];
-            _healthService.SetMaxHealth(_unitConfiguration.health);
-            _healthService.OnHealthValueChanged += OnHealthChanged;
-            _bars.SetActive(false);*/
-        }
 
         private void OnHealthChanged(int value, int maxValue)
         {
-            /*if (value == 0)
+            if (value == 0)
             {
+                SetBarsActive(false);
                 Die();
-            }*/
+            }
         }
 
-        private void TurnOff()
+        public void Activate()
         {
-            /*_manaService.TurnOff();
-            _attackService.TurnOff();
-            _animationService.TurnOff();
-            _effectController.Deactivate();*/
+            _attackService.Activate(UnitData);
+            _manaService.Activate(UnitData);
         }
 
-        public void PrepareMode()
+        public void Deactivate()
         {
-            /*UnitState = UnitState.Idle;
-            _attackService.FindTarget();
-            _bars.SetActive(true);*/
+            _attackService.Deactivate();
+            _manaService.Deactivate();
+            _animationService.Deactivate();
         }
 
-        public void StartBattle()
+        public void FindTarget()
         {
-            /*_manaService.TurnOn();
-            _attackService.TurnOn();
-            _effectController.Activate();*/
+            var target = _boardModel.FindTarget(_unitFacade);
+            _attackService.SetTarget(target);
         }
     }
 }

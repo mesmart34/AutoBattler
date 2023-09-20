@@ -1,10 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Common;
+using Common.Board;
 using Common.Tavern;
 using Common.Unit.Hero;
-using Controllers;
-using Factories;
 using UnityEngine;
 using Zenject;
 
@@ -12,6 +11,8 @@ namespace Models
 {
     public class TavernModel : IInitializable
     {
+        private Dictionary<Vector2Int, PlatformFacade> _platforms;
+        
         [Inject]
         private readonly TavernUnitSpawner _tavernUnitSpawner;
 
@@ -23,10 +24,7 @@ namespace Models
 
         [Inject]
         private readonly TavernUIController _tavernUIController;
-
-        [Inject]
-        private LoadingScreenController _loadingScreenController;
-
+        
         [Inject]
         private MapModel _mapModel;
         
@@ -35,9 +33,10 @@ namespace Models
         
         public void Initialize()
         {
-           _platformSpawner.SpawnPlatforms(false, _tavernSettings.parent); 
-           Heroes = _tavernUnitSpawner.SpawnUnits();
+            _platforms = _platformSpawner.SpawnPlatforms(false, _tavernSettings.parent); 
+           Heroes = _tavernUnitSpawner.SpawnTavernUnits(_platforms);
            _tavernUIController.OpenMessage();
+           _mapModel.Lock();
         }
 
         public void BeginBattle()

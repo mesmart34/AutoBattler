@@ -1,5 +1,4 @@
-﻿using System;
-using Models;
+﻿using Models;
 using UnityEngine;
 using Zenject;
 
@@ -9,29 +8,26 @@ namespace Common.Board
     {
         [Inject]
         private BoardModel _boardModel;
+        
 
-        [Inject]
-        private MapModel _mapModel;
-
-        private void Start()
+        public void BeginBattle()
         {
-           // _boardModel.Initialize();
-            Ready();
+            _boardModel.BeginBattle();
         }
 
-        public void StartBattle()
+        public void Lose()
         {
-            _boardModel.StartBattle();
+            _boardModel.Lose();
         }
 
-        public void Ready()
+        public void Win()
         {
-            //_boardModel.Ready();
+            _boardModel.Win();
         }
 
-        public void NextEnemy()
+        public void Next()
         {
-            _mapModel.Open();
+            _boardModel.Next();
         }
     }
 }

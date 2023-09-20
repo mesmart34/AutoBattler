@@ -12,6 +12,9 @@ namespace Common
 
         [SerializeField]
         private float speed = 1.0f;
+
+        [SerializeField]
+        private float workingTime = 1.0f;
         
         [SerializeField]
         private GameObject loadingPanel;
@@ -31,15 +34,18 @@ namespace Common
 
         private IEnumerator TextAnimation()
         {
-            while (true)
+            var timer = 0.0f;
+            while (timer <= workingTime)
             {
                 loadingText.text = text;
                 for (var i = 0; i < 3; i++)
                 {
                     loadingText.text += ".";
+                    timer += Time.deltaTime;
                     yield return new WaitForSeconds(speed);
                 }
             }
+            gameObject.SetActive(false);
         }
     }
 }

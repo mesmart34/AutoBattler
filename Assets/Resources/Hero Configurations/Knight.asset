@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb969facc796412b97742bea0d8b7e2a, type: 3}
+  m_Name: Knight
+  m_EditorClassIdentifier: 
+  unitData:
+    name: Knight
+    locked: 0
+    health: 850
+    physicsShield: 16
+    magicShield: 5
+    mana: 80
+    manaRegenerationAmount: 3
+    attackTimeout: 1.2
+    attackStrength: 75
+    sprite:
+    - {fileID: -1296032192, guid: 3eacb4b0b5e79df4d8a81848c74c1197, type: 3}
+    - {fileID: -734538192, guid: 3eacb4b0b5e79df4d8a81848c74c1197, type: 3}
+    - {fileID: 285083001, guid: 3eacb4b0b5e79df4d8a81848c74c1197, type: 3}
+    emissionMap: []

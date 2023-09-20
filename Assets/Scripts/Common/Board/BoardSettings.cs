@@ -1,39 +1,37 @@
 ﻿using System;
-using Common.Map;
+using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Common.Board
 {
     [Serializable]
     public class BoardSettings
     {
-        [FormerlySerializedAs("enemyBoardConfiguration")]
         [SerializeField]
-        public LevelConfiguration levelConfiguration;
+        public Transform heroPlatformParent;
+
+        [SerializeField]
+        public Transform enemyPlatformParent;
+
+        [SerializeField]
+        public Transform heroesParent;
         
+        [SerializeField]
+        public Transform enemyParent;
+        
+        [SerializeField]
+        public BoardPlatformSettings boardPlatformSettings;
+
         [SerializeField]
         public PlayerBoardConfiguration playerBoardConfiguration;
 
         [SerializeField]
-        public Camera camera;
+        public RectTransform beginBattlePanel;
 
         [SerializeField]
-        public Transform transform;
-
+        public GameObject battleResult;
+        
         [SerializeField]
-        public Vector2Int boardPlayerSideSize;
-
-        [SerializeField]
-        public Vector3 position;
-
-        [SerializeField]
-        public float spacing = 10.0f;
-
-        [SerializeField]
-        public float distanceBetweenSides = 1;
-
-        [SerializeField]
-        public bool isTavern;
+        public TextMeshProUGUI battleResultText;
     }
 }

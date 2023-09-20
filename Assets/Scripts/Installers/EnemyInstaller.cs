@@ -1,4 +1,6 @@
-﻿using Models;
+﻿using Common.Unit;
+using Models;
+using Zenject;
 
 namespace Installers
 {
@@ -7,7 +9,7 @@ namespace Installers
         protected override void BindUnit()
         {
             Container
-                .BindInterfacesAndSelfTo<EnemyModel>()
+                .Bind(typeof(UnitModel), typeof(IInitializable)).To<EnemyModel>()
                 .AsSingle()
                 .WithArguments(unitSettings)
                 .NonLazy();
@@ -15,6 +17,10 @@ namespace Installers
                 .BindInterfacesTo<EnemyInstaller>()
                 .FromInstance(this)
                 .AsSingle();
+        }
+
+        public EnemyInstaller(UnitData unitData) : base(unitData)
+        {
         }
     }
 }

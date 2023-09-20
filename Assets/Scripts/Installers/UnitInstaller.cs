@@ -8,12 +8,22 @@ namespace Installers
 {
     public abstract class UnitInstaller : MonoInstaller, IInitializable
     {
+        [InjectOptional]
+        private UnitData _unitData;
+        
         [SerializeField]
         public UnitSettings unitSettings;
+        
+
+        protected UnitInstaller(UnitData unitData)
+        {
+            _unitData = unitData;
+        }
 
         public override void InstallBindings()
         {
             Container.BindInstance(unitSettings).AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<UnitHighlighter>().AsSingle().NonLazy();
             BindUnit();
             BindUnitServices();
             BindFactories();
@@ -34,7 +44,6 @@ namespace Installers
             Container
                 .BindInterfacesAndSelfTo<ManaService>()
                 .AsSingle()
-                .WithArguments(unitSettings)
                 .NonLazy();
             Container
                 .BindInterfacesAndSelfTo<AttackService>()

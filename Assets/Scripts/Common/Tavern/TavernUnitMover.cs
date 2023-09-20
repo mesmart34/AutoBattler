@@ -56,6 +56,11 @@ namespace Common.Tavern
             if (hit.collider.CompareTag(PlatformTag))
             {
                 var platformFacade = hit.collider.gameObject.GetComponent<PlatformFacade>();
+                if (platformFacade.Busy)
+                {
+                    ReturnUnitToSpawnPoint();
+                    return;
+                }
                 platformFacade.SetUnit(_selectedUnit);
                 _selectedUnit = null;
                 SaveCurrentBoardState();
@@ -72,6 +77,10 @@ namespace Common.Tavern
             if (Physics.Raycast(ray, out RaycastHit hit, 100000, _unitLayer))
             {
                 _selectedUnit = hit.collider.gameObject.GetComponent<UnitFacade>();
+                if (_selectedUnit.Platform != null)
+                {
+                    _selectedUnit.Platform.Clear();
+                }
                 SaveCurrentBoardState();
             }
         }

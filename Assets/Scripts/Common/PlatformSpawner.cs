@@ -6,11 +6,9 @@ using Zenject;
 
 namespace Common
 {
-    public class PlatformSpawner : IInitializable
+    public class PlatformSpawner
     {
         private BoardPlatformSettings _boardPlatformSettings;
-
-        public Dictionary<Vector2Int, PlatformFacade> platforms  = new();
         
         [Inject]
         private PlatformFactory _platformFactory;
@@ -20,8 +18,9 @@ namespace Common
             _boardPlatformSettings = boardPlatformSettings;
         }
         
-        public void SpawnPlatforms(bool invertSides, Transform parent)
+        public Dictionary<Vector2Int, PlatformFacade>  SpawnPlatforms(bool invertSides, Transform parent)
         {
+            Dictionary<Vector2Int, PlatformFacade> platforms = new();
             var spacing = _boardPlatformSettings.spacing;
             for (var x = 0; x < _boardPlatformSettings.boardPlayerSideSize.x; x++)
             {
@@ -50,11 +49,8 @@ namespace Common
                     platforms.Add(logicPos, platform);
                 }
             }
-        }
 
-        public void Initialize()
-        {
-            _platformFactory.Load();
+            return platforms;
         }
     }
 }
