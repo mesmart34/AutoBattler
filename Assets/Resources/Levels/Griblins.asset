@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb47b272bb649ca8253b24b8b2bc7f7, type: 3}
   m_Name: Griblins
   m_EditorClassIdentifier: 
-  name: Griblins
+  name: "\u0413\u0440\u0438\u0431\u043B\u0438\u043D\u044B"
   enemies:
   - enemyConfiguration: {fileID: 11400000, guid: 9f5a71e4b8dc4d442a61b67d1ae2358f, type: 2}
     position: {x: 1, y: 1}

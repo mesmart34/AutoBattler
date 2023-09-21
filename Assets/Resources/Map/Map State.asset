@@ -15,51 +15,44 @@ MonoBehaviour:
   level:
   - levelColumn:
     - levelType: 1
-      levelConfiguration: {fileID: 11400000, guid: e78a1e5a7c360e6439e09c1c4db1bbac, type: 2}
+      levelConfiguration: {fileID: 11400000, guid: 0f31bd8577aecf8419c3c0c026ebd057, type: 2}
     - levelType: 1
-      levelConfiguration: {fileID: 11400000, guid: e78a1e5a7c360e6439e09c1c4db1bbac, type: 2}
+      levelConfiguration: {fileID: 11400000, guid: 00dbe67c3a5dcb34aa5a20d157db47df, type: 2}
     - levelType: 1
-      levelConfiguration: {fileID: 11400000, guid: e78a1e5a7c360e6439e09c1c4db1bbac, type: 2}
+      levelConfiguration: {fileID: 11400000, guid: 33227767e62792e4cb7b44002ee73931, type: 2}
   - levelColumn:
     - levelType: 0
       levelConfiguration: {fileID: 0}
-    - levelType: 0
-      levelConfiguration: {fileID: 0}
     - levelType: 1
-      levelConfiguration: {fileID: 11400000, guid: e78a1e5a7c360e6439e09c1c4db1bbac, type: 2}
-  - levelColumn:
-    - levelType: 0
-      levelConfiguration: {fileID: 0}
-    - levelType: 0
-      levelConfiguration: {fileID: 0}
-    - levelType: 1
-      levelConfiguration: {fileID: 11400000, guid: e78a1e5a7c360e6439e09c1c4db1bbac, type: 2}
-  - levelColumn:
-    - levelType: 1
-      levelConfiguration: {fileID: 11400000, guid: e78a1e5a7c360e6439e09c1c4db1bbac, type: 2}
-    - levelType: 0
-      levelConfiguration: {fileID: 0}
+      levelConfiguration: {fileID: 11400000, guid: ac1f9dab823a14d49959cb53eb3a1b83, type: 2}
     - levelType: 0
       levelConfiguration: {fileID: 0}
   - levelColumn:
     - levelType: 0
       levelConfiguration: {fileID: 0}
-    - levelType: 0
-      levelConfiguration: {fileID: 0}
     - levelType: 1
-      levelConfiguration: {fileID: 11400000, guid: e78a1e5a7c360e6439e09c1c4db1bbac, type: 2}
-  - levelColumn:
-    - levelType: 0
-      levelConfiguration: {fileID: 0}
-    - levelType: 1
-      levelConfiguration: {fileID: 11400000, guid: e78a1e5a7c360e6439e09c1c4db1bbac, type: 2}
+      levelConfiguration: {fileID: 11400000, guid: 413677f7b9c0d4942aaa54ab4c72a5b6, type: 2}
     - levelType: 0
       levelConfiguration: {fileID: 0}
   - levelColumn:
     - levelType: 1
-      levelConfiguration: {fileID: 11400000, guid: e78a1e5a7c360e6439e09c1c4db1bbac, type: 2}
+      levelConfiguration: {fileID: 11400000, guid: 95292b9bd3308204caad943799e8957c, type: 2}
+    - levelType: 0
+      levelConfiguration: {fileID: 0}
     - levelType: 1
-      levelConfiguration: {fileID: 11400000, guid: e78a1e5a7c360e6439e09c1c4db1bbac, type: 2}
+      levelConfiguration: {fileID: 11400000, guid: 33227767e62792e4cb7b44002ee73931, type: 2}
+  - levelColumn:
+    - levelType: 0
+      levelConfiguration: {fileID: 0}
+    - levelType: 1
+      levelConfiguration: {fileID: 11400000, guid: 0f31bd8577aecf8419c3c0c026ebd057, type: 2}
+    - levelType: 0
+      levelConfiguration: {fileID: 0}
+  - levelColumn:
+    - levelType: 1
+      levelConfiguration: {fileID: 11400000, guid: 6a89f5237e07d0d4ea2dbee6922a76a1, type: 2}
+    - levelType: 1
+      levelConfiguration: {fileID: 11400000, guid: 95292b9bd3308204caad943799e8957c, type: 2}
     - levelType: 0
       levelConfiguration: {fileID: 0}
   - levelColumn:
@@ -68,18 +61,25 @@ MonoBehaviour:
     - levelType: 0
       levelConfiguration: {fileID: 0}
     - levelType: 1
-      levelConfiguration: {fileID: 11400000, guid: e78a1e5a7c360e6439e09c1c4db1bbac, type: 2}
+      levelConfiguration: {fileID: 11400000, guid: ac1f9dab823a14d49959cb53eb3a1b83, type: 2}
   - levelColumn:
     - levelType: 0
       levelConfiguration: {fileID: 0}
     - levelType: 1
-      levelConfiguration: {fileID: 11400000, guid: e78a1e5a7c360e6439e09c1c4db1bbac, type: 2}
+      levelConfiguration: {fileID: 11400000, guid: ac1f9dab823a14d49959cb53eb3a1b83, type: 2}
+    - levelType: 1
+      levelConfiguration: {fileID: 11400000, guid: 00dbe67c3a5dcb34aa5a20d157db47df, type: 2}
+  - levelColumn:
+    - levelType: 1
+      levelConfiguration: {fileID: 11400000, guid: 6a89f5237e07d0d4ea2dbee6922a76a1, type: 2}
+    - levelType: 0
+      levelConfiguration: {fileID: 0}
     - levelType: 0
       levelConfiguration: {fileID: 0}
   - levelColumn:
+    - levelType: 0
+      levelConfiguration: {fileID: 0}
     - levelType: 4
-      levelConfiguration: {fileID: 11400000, guid: e78a1e5a7c360e6439e09c1c4db1bbac, type: 2}
-    - levelType: 0
-      levelConfiguration: {fileID: 0}
+      levelConfiguration: {fileID: 11400000, guid: 6a89f5237e07d0d4ea2dbee6922a76a1, type: 2}
     - levelType: 0
       levelConfiguration: {fileID: 0}

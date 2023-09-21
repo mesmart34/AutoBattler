@@ -29,3 +29,4 @@ MonoBehaviour:
     - {fileID: 21300000, guid: 4eb8fb2eeaa3d9047a563195e5cc4ded, type: 3}
     - {fileID: 21300000, guid: 26894bcfcddd5564381d2a826f4e368b, type: 3}
     emissionMap: []
+    invertSpriteHorizontally: 1

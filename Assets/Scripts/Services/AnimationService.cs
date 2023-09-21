@@ -31,7 +31,9 @@ namespace Services
             {
                 return;
             }
-            _sequence.Append(_spriteRenderer.transform.DOPunchPosition(Vector3.right, 0.5f, 0, 0.0f));
+
+            var attackDirection = _unitSettings.spriteRenderer.flipX ? Vector3.left : Vector3.right;
+            _sequence.Append(_spriteRenderer.transform.DOPunchPosition(attackDirection, 0.5f, 0, 0.0f));
         }
 
         public void PlayLockedAnimation()

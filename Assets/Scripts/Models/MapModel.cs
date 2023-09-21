@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Common;
 using Common.Enemy;
@@ -23,10 +24,16 @@ namespace Models
         private PlayerConfiguration _playerConfiguration;
 
         [Inject]
+        private LoadingScreenController _loadingScreenController;
+        
+        [Inject]
         private MapIconFactory _mapIconFactory;
 
         [Inject]
         private readonly MapSettings _mapSettings;
+        
+        [Inject]
+        private AsyncHandler _asyncHandler;
 
         public bool IsMapOpened { get; private set; }
 
@@ -37,6 +44,11 @@ namespace Models
             _playerConfiguration = _mapSettings.playerConfiguration;
         }
 
+        public bool IsFinished()
+        {
+            return MapWidth == _playerConfiguration.mapProgress + 1;
+        }
+        
         public void MoveNext()
         {
             _playerConfiguration.mapProgress += 1;
@@ -109,7 +121,21 @@ namespace Models
         private void OnIconClick(int rowIndex)
         {
             _playerConfiguration.mapLevelInColumn = rowIndex;
-            SceneManager.LoadScene("Battle");
+            _asyncHandler.StartCoroutine(LoadNextLevel());
+        }
+        
+        private IEnumerator LoadNextLevel()
+        {
+            _loadingScreenController.Open();
+            var loadSceneAsync = SceneManager.LoadSceneAsync("Battle");
+            var timer = 0.0f;
+            loadSceneAsync.allowSceneActivation = false;
+            while (!loadSceneAsync.isDone && timer < 2.0f)
+            {
+                timer += Time.deltaTime;
+                yield return null;
+            }
+            loadSceneAsync.allowSceneActivation = true;
         }
         
         private void GenerateColumn(MapColumnWrapper column)
@@ -144,6 +170,8 @@ namespace Models
 
         public void GenerateLevelPipeline()
         {
+            _playerConfiguration.mapProgress = 0;
+            _playerConfiguration.mapLevelInColumn = 0;
             var mapState = _mapState.level;
             var mapHeight = 3;
             for (var i = 0; i < MapWidth; i++)
@@ -198,7 +226,7 @@ namespace Models
             }
         }
 
-        private void GenerateViewForMap()
+        public void GenerateViewForMap()
         {
             foreach (var col in _mapState.level)
             {

@@ -41,13 +41,17 @@ namespace Common.Unit
             _material = _unitSettings.spriteRenderer.material;
             _healthService.OnHealthValueChanged += (int current, int max) =>
             {
-                OnUnitDie?.Invoke();
+                if (current <= 0)
+                {
+                    OnUnitDie?.Invoke();
+                }
             };
         }
 
         public void SetUnitData(UnitData unitData)
         {
             _unitModel.SetupWithUnitData(unitData);
+            _unitSettings.spriteRenderer.flipX = unitData.invertSpriteHorizontally;
             _unitSettings.spriteRenderer.sprite = unitData.sprite[0];
         }
 

@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 784ab4b07aa34e26bf761ba672017de1, type: 3}
   m_Name: Player Configuration
   m_EditorClassIdentifier: 
-  mapProgress: 10
+  mapProgress: 0
   mapLevelInColumn: 0

@@ -33,5 +33,8 @@ namespace Common.Board
         
         [SerializeField]
         public TextMeshProUGUI battleResultText;
+
+        [SerializeField]
+        public TextMeshProUGUI enemyNameText;
     }
 }

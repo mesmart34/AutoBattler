@@ -4,6 +4,7 @@ using Common;
 using Common.Board;
 using Common.Tavern;
 using Common.Unit.Hero;
+using Controllers;
 using UnityEngine;
 using Zenject;
 
@@ -24,7 +25,7 @@ namespace Models
 
         [Inject]
         private readonly TavernUIController _tavernUIController;
-        
+
         [Inject]
         private MapModel _mapModel;
         
@@ -46,7 +47,6 @@ namespace Models
             {
                 _tavernUIController.CloseMessage();
                 _mapModel.Open();
-                //_loadingScreenController.Open();
             }
         }
     }

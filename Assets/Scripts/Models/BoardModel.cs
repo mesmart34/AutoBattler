@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Xml.Schema;
 using Common;
 using Common.Board;
@@ -8,8 +10,10 @@ using Common.Map;
 using Common.Unit;
 using Common.Unit.Enemy;
 using Common.Unit.Hero;
+using Controllers;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Models
@@ -33,10 +37,16 @@ namespace Models
         [Inject]
         private UnitSpawner _unitSpawner;
 
+        [Inject]
+        private AsyncHandler _asyncHandler;
+        
+        [Inject]
+        private LoadingScreenController _loadingScreenController;
+
         public void Initialize()
         {
             var level = _mapModel.GetCurrentLevel();
-            
+            _boardSettings.enemyNameText.text = level.levelConfiguration.name;
             _mapModel.Lock();
             
             heroPlatforms = _platformSpawner.SpawnPlatforms(false, _boardSettings.heroPlatformParent);
@@ -156,6 +166,8 @@ namespace Models
             {
                 Lose();
             }
+
+            MakeUnitsToFindTargets();
         }
         
         public UnitFacade FindTarget(UnitFacade unitFacade)
@@ -164,23 +176,45 @@ namespace Models
             {
                 return enemies
                     .OrderBy(x => Vector3.Distance(x.Platform.transform.position, unitFacade.transform.position))
-                    .FirstOrDefault();
+                    .FirstOrDefault(x => x.IsAlive);
             }
             return heroes
                 .OrderBy(x => Vector3.Distance(x.Platform.transform.position, unitFacade.transform.position))
-                .FirstOrDefault();
+                .FirstOrDefault(x => x.IsAlive);
         }
 
         public void Next()
         {
             var rect = _boardSettings.battleResult.GetComponent<RectTransform>();
             var target = new Vector3(0, 0, 0);
+            if (_mapModel.IsFinished())
+            {
+                _mapModel.GenerateLevelPipeline();
+                _mapModel.GenerateViewForMap();
+                _asyncHandler.StartCoroutine(LoadTavern());
+            }
             rect.DOJumpAnchorPos(target, 1, 1, 0.25f).onComplete += () =>
             {
                 _mapModel.MoveNext();
                 _mapModel.Unlock();
                 _mapModel.Open();
             };
+        }
+
+        private IEnumerator LoadTavern()
+        {
+            _loadingScreenController.Open();
+            var loadSceneAsync = SceneManager.LoadSceneAsync("Scenes/TavernScene");
+            var timer = 0.0f;
+            while (!loadSceneAsync.isDone && timer < 2.0f)
+            {
+                timer += Time.deltaTime;
+                if (loadSceneAsync.progress >= 0.9f)
+                {
+                    loadSceneAsync.allowSceneActivation = true;
+                }
+                yield return null;
+            }
         }
     }
 }

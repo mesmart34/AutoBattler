@@ -53,7 +53,8 @@ namespace Factories
                 emissionMap = unitData.emissionMap,
                 physicsShield = unitData.physicsShield,
                 manaRegenerationAmount = unitData.manaRegenerationAmount,
-                locked = unitData.locked
+                locked = unitData.locked,
+                invertSpriteHorizontally = unitData.invertSpriteHorizontally
             });
             unitFacade.transform.position = position;
             return unitFacade;
@@ -74,7 +75,8 @@ namespace Factories
                 emissionMap = unitData.emissionMap,
                 physicsShield = unitData.physicsShield,
                 manaRegenerationAmount = unitData.manaRegenerationAmount,
-                locked = unitData.locked
+                locked = unitData.locked,
+                invertSpriteHorizontally = unitData.invertSpriteHorizontally
             };
             var enemyFacade = _diContainer.InstantiatePrefabForComponent<EnemyFacade>(_enemyPrefab, parent);
             enemyFacade.SetUnitData(data);

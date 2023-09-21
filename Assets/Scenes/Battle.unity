@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.4501878, g: 0.50022686, b: 0.5754074, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &41998624 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5788320081549624549, guid: 19889a42de958b54ea487e737915ae75, type: 3}
+  m_PrefabInstance: {fileID: 193674915}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &113518151
 GameObject:
   m_ObjectHideFlags: 0
@@ -241,6 +246,10 @@ PrefabInstance:
     - target: {fileID: 3790351724653738392, guid: 7304123e3a0a814489f3e2cb04016a43, type: 3}
       propertyPath: m_Name
       value: LoadingScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 4585799876613317746, guid: 7304123e3a0a814489f3e2cb04016a43, type: 3}
+      propertyPath: text
+      value: "\u0437\u0430\u0433\u0440\u0443\u0437\u043A\u0430"
       objectReference: {fileID: 0}
     - target: {fileID: 7460184331668075940, guid: 7304123e3a0a814489f3e2cb04016a43, type: 3}
       propertyPath: m_Pivot.x
@@ -526,7 +535,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5788320081549624549, guid: 19889a42de958b54ea487e737915ae75, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1516864800}
   m_SourcePrefab: {fileID: 100100000, guid: 19889a42de958b54ea487e737915ae75, type: 3}
 --- !u!1 &202881204
 GameObject:
@@ -1151,7 +1163,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &512901649
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1673,10 +1685,10 @@ RectTransform:
   - {fileID: 503576734}
   - {fileID: 472521277}
   - {fileID: 1516864790}
-  - {fileID: 2055009384}
   - {fileID: 512901649}
   - {fileID: 967393207}
   - {fileID: 435073652}
+  - {fileID: 2055009384}
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1901,7 +1913,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &967393207
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2307,14 +2319,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110705943}
-  m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalRotation: {x: 0.4606694, y: -0.07448671, z: -0.4751746, w: 0.7459521}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+  m_LocalEulerAnglesHint: {x: 38.06, y: -44.2, z: -80.94}
 --- !u!114 &1110705946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3113,10 +3125,22 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8163204969357852512, guid: 19889a42de958b54ea487e737915ae75, type: 3}
   m_PrefabInstance: {fileID: 193674915}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 41998624}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 922d935d60d84f99ae7b1cc8e34161d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1516864800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41998624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d47eebcda21847d7aaadcb6fb3e64634, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1569354380
@@ -3131,6 +3155,7 @@ GameObject:
   - component: {fileID: 1569354383}
   - component: {fileID: 1569354382}
   - component: {fileID: 1569354381}
+  - component: {fileID: 1569354385}
   m_Layer: 3
   m_Name: Board
   m_TagString: Untagged
@@ -3164,7 +3189,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - {fileID: 1569354381}
-  - {fileID: 1937062523}
   _identifier: 
   _useSceneContext: 0
   _context: {fileID: 1718206136}
@@ -3191,6 +3215,7 @@ MonoBehaviour:
     beginBattlePanel: {fileID: 472521277}
     battleResult: {fileID: 435073651}
     battleResultText: {fileID: 793573208}
+    enemyNameText: {fileID: 1419026881}
 --- !u!4 &1569354384
 Transform:
   m_ObjectHideFlags: 0
@@ -3210,6 +3235,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1569354385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569354380}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d47eebcda21847d7aaadcb6fb3e64634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1638063370
 GameObject:
   m_ObjectHideFlags: 0
@@ -3423,6 +3460,7 @@ GameObject:
   - component: {fileID: 1718206136}
   - component: {fileID: 1718206137}
   - component: {fileID: 1718206139}
+  - component: {fileID: 1718206140}
   m_Layer: 0
   m_Name: SceneContext
   m_TagString: Untagged
@@ -3505,10 +3543,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _components:
   - {fileID: 2055009385}
+  - {fileID: 1718206140}
   _identifier: 
   _useSceneContext: 0
   _context: {fileID: 0}
-  _bindType: 0
+  _bindType: 2
+--- !u!114 &1718206140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1718206135}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d47eebcda21847d7aaadcb6fb3e64634, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1885226674
 GameObject:
   m_ObjectHideFlags: 0
@@ -3633,11 +3684,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6eef11ff8104c1392d9ac0e5fce226f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpTime: 0.5
-  jumpNumber: 3
-  jumpPower: 3
-  beginAutoBattlePanel: {fileID: 472521276}
-  battleResultScreen: {fileID: 435073651}
 --- !u!4 &1937062524
 Transform:
   m_ObjectHideFlags: 0

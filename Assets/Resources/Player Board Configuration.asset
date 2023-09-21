@@ -12,10 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d83f7016d83c40d8b67e64ae46a70d97, type: 3}
   m_Name: Player Board Configuration
   m_EditorClassIdentifier: 
-  units:
-  - name: Knight
-    position: {x: 1, y: 2}
-  - name: Afro
-    position: {x: 1, y: 0}
-  - name: Paladin
-    position: {x: 0, y: 2}
+  units: []

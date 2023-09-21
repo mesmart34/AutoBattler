@@ -23,5 +23,6 @@ namespace Common.Unit
         [Header("Visuals")]
         public Sprite[] sprite;
         public Texture2D[] emissionMap;
+        public bool invertSpriteHorizontally;
     }
 }

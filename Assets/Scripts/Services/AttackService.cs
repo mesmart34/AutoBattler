@@ -72,6 +72,11 @@ namespace Services
             }
             _time = 0;
 
+            if (_target != null && !_target.IsAlive)
+            {
+                _target = null;
+            }
+            
             if (_target == null)
             {
                 OnTargetNeed?.Invoke();

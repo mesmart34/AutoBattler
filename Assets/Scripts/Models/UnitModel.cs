@@ -130,7 +130,10 @@ namespace Models
         public void FindTarget()
         {
             var target = _boardModel.FindTarget(_unitFacade);
-            _attackService.SetTarget(target);
+            if (_attackService.Target != null && !_attackService.Target.IsAlive)
+            {
+                _attackService.SetTarget(target);
+            }
         }
     }
 }

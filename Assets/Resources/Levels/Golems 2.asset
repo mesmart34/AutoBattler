@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fb47b272bb649ca8253b24b8b2bc7f7, type: 3}
   m_Name: Golems 2
   m_EditorClassIdentifier: 
-  name: Goblins
+  name: "\u0413\u043E\u043B\u0435\u043C\u044B"
   enemies:
   - enemyConfiguration: {fileID: 11400000, guid: 51e17450f2c520c4e957df39c6dcfbd0, type: 2}
     position: {x: 1, y: 1}

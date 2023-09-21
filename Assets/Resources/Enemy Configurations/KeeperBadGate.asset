@@ -38,3 +38,4 @@ MonoBehaviour:
     - {fileID: 625287086, guid: 7fa9c3a142b273c4d83cb895f251f781, type: 3}
     - {fileID: -1950999941, guid: 7fa9c3a142b273c4d83cb895f251f781, type: 3}
     emissionMap: []
+    invertSpriteHorizontally: 1
