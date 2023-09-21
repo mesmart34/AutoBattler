@@ -1,0 +1,36 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5082ef6b3ad473194a041953b83ba5e, type: 3}
+  m_Name: GloomyLook
+  m_EditorClassIdentifier: 
+  unitData:
+    name: Gloomy Look
+    locked: 0
+    health: 1000
+    physicsShield: 7
+    magicShield: 15
+    mana: 45
+    manaRegenerationAmount: 5
+    attackTimeout: 1.8
+    attackStrength: 75
+    sprite:
+    - {fileID: -521320795, guid: d711786cb41e494479aa94a329a43754, type: 3}
+    - {fileID: 557864132, guid: d711786cb41e494479aa94a329a43754, type: 3}
+    - {fileID: 573362311, guid: d711786cb41e494479aa94a329a43754, type: 3}
+    - {fileID: 1618817599, guid: d711786cb41e494479aa94a329a43754, type: 3}
+    - {fileID: -1382732340, guid: d711786cb41e494479aa94a329a43754, type: 3}
+    - {fileID: -370120414, guid: d711786cb41e494479aa94a329a43754, type: 3}
+    - {fileID: 806063828, guid: d711786cb41e494479aa94a329a43754, type: 3}
+    - {fileID: -1037964362, guid: d711786cb41e494479aa94a329a43754, type: 3}
+    - {fileID: -1657199456, guid: d711786cb41e494479aa94a329a43754, type: 3}
+    - {fileID: -1189730526, guid: d711786cb41e494479aa94a329a43754, type: 3}
+    emissionMap: []

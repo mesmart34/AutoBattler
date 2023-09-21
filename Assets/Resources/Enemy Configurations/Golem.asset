@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5082ef6b3ad473194a041953b83ba5e, type: 3}
+  m_Name: Golem
+  m_EditorClassIdentifier: 
+  unitData:
+    name: Golem
+    locked: 0
+    health: 1800
+    physicsShield: 18
+    magicShield: 25
+    mana: 65
+    manaRegenerationAmount: 5
+    attackTimeout: 3.1
+    attackStrength: 150
+    sprite:
+    - {fileID: 176821492, guid: 42a94021df768eb448b97ac9d41b3885, type: 3}
+    - {fileID: -1961050041, guid: 42a94021df768eb448b97ac9d41b3885, type: 3}
+    - {fileID: 898325023, guid: 42a94021df768eb448b97ac9d41b3885, type: 3}
+    - {fileID: 14024112, guid: 42a94021df768eb448b97ac9d41b3885, type: 3}
+    - {fileID: 5775392, guid: 42a94021df768eb448b97ac9d41b3885, type: 3}
+    - {fileID: 640815815, guid: 42a94021df768eb448b97ac9d41b3885, type: 3}
+    - {fileID: 1497427177, guid: 42a94021df768eb448b97ac9d41b3885, type: 3}
+    - {fileID: -557360450, guid: 42a94021df768eb448b97ac9d41b3885, type: 3}
+    - {fileID: 2011721153, guid: 42a94021df768eb448b97ac9d41b3885, type: 3}
+    - {fileID: 1690580315, guid: 42a94021df768eb448b97ac9d41b3885, type: 3}
+    - {fileID: 1839332752, guid: 42a94021df768eb448b97ac9d41b3885, type: 3}
+    - {fileID: -409688038, guid: 42a94021df768eb448b97ac9d41b3885, type: 3}
+    emissionMap: []
