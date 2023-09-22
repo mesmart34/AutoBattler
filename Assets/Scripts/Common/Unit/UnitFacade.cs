@@ -37,6 +37,10 @@ namespace Common.Unit
         
         private void Awake()
         {
+            if (_unitSettings == null)
+            {
+                return;
+            }
             _lineVisible = true;
             _material = _unitSettings.spriteRenderer.material;
             _healthService.OnHealthValueChanged += (int current, int max) =>
@@ -66,13 +70,13 @@ namespace Common.Unit
             {
                 return;
             }
-            
-            _unitHighlighter.ShowHighlight ();
+
+            _unitHighlighter?.ShowHighlight ();
         }
 
         private void OnMouseExit()
         {
-            _unitHighlighter.HideHighlight();
+            _unitHighlighter?.HideHighlight();
         }
 
         private void Update()

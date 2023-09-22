@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Common;
@@ -12,6 +13,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using Zenject;
 using Zenject.ReflectionBaking.Mono.Cecil;
+using Random = UnityEngine.Random;
 
 namespace Models
 {
@@ -254,6 +256,11 @@ namespace Models
 
         public MapLevelWrapper GetCurrentLevel()
         {
+            if (_playerConfiguration.mapProgress >= _mapState.level.Count)
+            {
+                Debug.LogError($"Level {_playerConfiguration.mapProgress} doesn't exist");
+                return null;
+            }
             var row = _mapState.level[_playerConfiguration.mapProgress];
             var level = row.levelColumn[_playerConfiguration.mapLevelInColumn];
             return level;

@@ -46,6 +46,10 @@ namespace Models
         public void Initialize()
         {
             var level = _mapModel.GetCurrentLevel();
+            if (level == null)
+            {
+                return;
+            }
             _boardSettings.enemyNameText.text = level.levelConfiguration.name;
             _mapModel.Lock();
             

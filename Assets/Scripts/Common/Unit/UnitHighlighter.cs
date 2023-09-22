@@ -13,11 +13,21 @@ namespace Common.Unit
 
         public void ShowHighlight()
         {
+            if (_material == null)
+            {
+                return;
+            }
+            
             _material.SetInt(_outlineParameterName, 1);
         }
 
         public void HideHighlight()
         {
+            if (_material == null)
+            {
+                return;
+            }
+            
             _material.SetInt(_outlineParameterName, 0);
         }
 
