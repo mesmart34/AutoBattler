@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 7986906405391546806}
   - component: {fileID: 5965504632123634206}
   - component: {fileID: 6927981732337114390}
-  - component: {fileID: 2064477686932327681}
   m_Layer: 0
   m_Name: Highlighter
   m_TagString: Untagged
@@ -77,27 +76,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!95 &2064477686932327681
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2818076374145526671}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 13424c0d11d52d14dab7a0540da04fea, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &4503690568731240095
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,6 +88,7 @@ GameObject:
   - component: {fileID: 1974361325816715989}
   - component: {fileID: 628303173129105157}
   - component: {fileID: 5237820251251291288}
+  - component: {fileID: -2262331971624932734}
   m_Layer: 0
   m_Name: Effect
   m_TagString: Untagged
@@ -136,7 +115,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0.4787, y: 0.4787}
+  m_SizeDelta: {x: 0.23935, y: 0.23935}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1974361325816715989
 CanvasRenderer:
@@ -166,7 +145,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0d1b8d973916cd54e8f134b2b054713c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5642fe17826c3d94c9c947d7d6f008a1, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -196,3 +175,16 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &-2262331971624932734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4503690568731240095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4cdfb21a2f014d8091c0c3a0d3b1559a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteImage: {fileID: 6927981732337114390}

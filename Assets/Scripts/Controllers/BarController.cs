@@ -1,5 +1,5 @@
 ﻿using System;
-using Scripts.Common;
+using Common.Unit;
 using Services;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Controllers
 {
-    public class BarController : MonoBehaviour, IInitializable, IDisposable
+    public class BarController : MonoBehaviour, IDisposable
     {
         [SerializeField]
         private Image _backgroundImage;
@@ -31,10 +31,10 @@ namespace Controllers
         private ManaService _manaService;
 
 
-        public void Initialize()
+        public void Start()
         {
             _healthService.OnHealthValueChanged += ChangeHealthBar;
-            _attackService.OnAttackTimeoutValueChange += ChangeAttackBar;
+            _attackService.OnAttackTimerChange += ChangeAttackBar;
             _manaService.OnManaValueChanged += ChangeManaBar;
         }
         
@@ -56,7 +56,7 @@ namespace Controllers
         public void Dispose()
         {
             _healthService.OnHealthValueChanged -= ChangeHealthBar;
-            _attackService.OnAttackTimeoutValueChange -= ChangeAttackBar;
+            _attackService.OnAttackTimerChange -= ChangeAttackBar;
             _manaService.OnManaValueChanged -= ChangeManaBar;
         }
 

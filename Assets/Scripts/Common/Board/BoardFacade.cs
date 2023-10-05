@@ -8,15 +8,26 @@ namespace Common.Board
     {
         [Inject]
         private BoardModel _boardModel;
+        
 
-        public void StartBattle()
+        public void BeginBattle()
         {
-            _boardModel.StartBattle();
+            _boardModel.BeginBattle();
         }
 
-        public void Ready()
+        public void Lose()
         {
-            _boardModel.Ready();
+            _boardModel.Lose();
+        }
+
+        public void Win()
+        {
+            _boardModel.Win();
+        }
+
+        public void Next()
+        {
+            _boardModel.Next();
         }
     }
 }

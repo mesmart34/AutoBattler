@@ -1,93 +1,88 @@
 ﻿using System;
-using Common;
+using Common.Unit;
 using Models;
-using Scripts.Signals;
 using UnityEngine;
 using Zenject;
 
 namespace Services
 {
-    public class AttackService : ITickable
+    public class AttackService : IInitializable, ITickable
     {
-        private const string AnimatorAttackTrigger = "Attack";
-        private readonly float _attackTimeout;
-        private float _attackTimeoutTimer;
+        private readonly UnitModel _unitModel;
+        private float _attackTimeout;
         private int _attackStrength;
-        public event Action<float, float> OnAttackTimeoutValueChange;
-
-        [Inject]
-        private readonly SignalBus _signalBus;
+        private bool _running;
+        private float _time;
+        private UnitFacade _target;
 
         [Inject]
         private AnimationService _animationService;
 
-        [Inject]
-        private HealthService _healthService;
+        public Action<float, float> OnAttackTimerChange;
+        public Action OnTargetNeed;
 
-        [Inject]
-        private readonly BoardModel _board;
-
-        [Inject]
-        private readonly UnitFacade _unitFacade;
-
-        public UnitFacade _target { get; private set; }
-
-
-        private bool _running;
-
-
-        public AttackService(float attackTimeout, int attackStrength)
+        public UnitFacade Target => _target;
+        
+        public void Activate(UnitData unitData)
         {
-            _attackTimeout = attackTimeout;
-            _attackStrength = attackStrength;
-        }
-
-        private void Attack()
-        {
-            _animationService.PlayAttackAnimation(AnimatorAttackTrigger);
-            _target.ApplyDamage(_attackStrength);
-        }
-
-        public void MakeReady()
-        {
+            _attackTimeout = unitData.attackTimeout;
+            _attackStrength = unitData.attackStrength;
             _running = true;
         }
-        
-        public void FindTarget()
+
+        public void Deactivate()
         {
-            _target = _unitFacade.IsEnemy ? _board.FindPlayer(_unitFacade) : _board.FindEnemy();
+            _running = false;
+        }
+        
+        private void Attack()
+        {
+            if (_target == null)
+            {
+                return;
+            }
+            
+            _animationService.PlayAttackAnimation();
+            _target.ApplyDamage(_attackStrength);
+            
         }
 
+        public void SetTarget(UnitFacade unitFacade)
+        {
+            _target = unitFacade;
+        }
 
+        public void Initialize()
+        {
+            
+        }
+        
         public void Tick()
         {
             if (!_running)
-                return;
-            if (_target == null || !_target.IsAlive)
             {
-                FindTarget();
                 return;
             }
 
-            _attackTimeoutTimer += Time.deltaTime;
-            _attackTimeoutTimer = Math.Clamp(_attackTimeoutTimer, 0, _attackTimeout);
-            if (_attackTimeoutTimer >= _attackTimeout)
+            _time += Time.deltaTime;
+            OnAttackTimerChange?.Invoke(_time, _attackTimeout);
+            if (_time < _attackTimeout)
             {
-                _attackTimeoutTimer = 0;
-                Attack();
+                return;
             }
+            _time = 0;
 
-            OnAttackTimeoutValueChange?.Invoke(_attackTimeoutTimer, _attackTimeout);
-        }
-
-        public void TurnOn()
-        {
-            _running = true;
-        }
-
-        public void TurnOff()
-        {
-            _running = false;
+            if (_target != null && !_target.IsAlive)
+            {
+                _target = null;
+            }
+            
+            if (_target == null)
+            {
+                OnTargetNeed?.Invoke();
+            }
+            
+            Attack();
         }
     }
 }

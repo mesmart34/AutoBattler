@@ -9,26 +9,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b39371ddd87f47109ba8aedfc43bf695, type: 3}
+  m_Script: {fileID: 11500000, guid: d5082ef6b3ad473194a041953b83ba5e, type: 3}
   m_Name: Fire Worm
   m_EditorClassIdentifier: 
-  name: Fire Worm
-  isEnemy: 1
-  health: 400
-  physicsShield: 7
-  magicShield: 10
-  mana: 50
-  manaRegenerationAmount: 5
-  attackTimeout: 1
-  attackStrength: 60
-  sprite:
-  - {fileID: -1900829365, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
-  - {fileID: 237908318, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
-  - {fileID: 978963524, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
-  - {fileID: -1044903591, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
-  - {fileID: -770327180, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
-  - {fileID: -1965348115, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
-  - {fileID: 148377656, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
-  - {fileID: 1796156772, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
-  - {fileID: 252781227, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
-  emissionMap: []
+  unitData:
+    name: Fire Worm
+    locked: 0
+    health: 400
+    physicsShield: 60
+    magicShield: 1
+    mana: 50
+    manaRegenerationAmount: 5
+    attackTimeout: 1
+    attackStrength: 60
+    sprite:
+    - {fileID: -1900829365, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
+    - {fileID: 237908318, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
+    - {fileID: 978963524, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
+    - {fileID: -1044903591, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
+    - {fileID: -770327180, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
+    - {fileID: -1965348115, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
+    - {fileID: 148377656, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
+    - {fileID: 1796156772, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
+    - {fileID: 252781227, guid: 44a4518e396ed1441b209c32a50782aa, type: 3}
+    emissionMap: []

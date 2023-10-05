@@ -1,0 +1,624 @@
+fileFormatVersion: 2
+guid: 044855c4fb8be404cb045a3fac400c40
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette
+    second: {fileID: 2100000, guid: 3eb8df4c3c7071a4cb1d943c82fbfa12, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.001
+    second: {fileID: 2100000, guid: 437f0dc7e468ed74486f42f106eccaf4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.002
+    second: {fileID: 2100000, guid: 57c223789c48c3b429813b7f31231845, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.003
+    second: {fileID: 2100000, guid: 3371987aa88ede943adb1d54ecb0a4f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.004
+    second: {fileID: 2100000, guid: 3200c3056579f9546b8880b43abba2dc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.005
+    second: {fileID: 2100000, guid: 6781711c4a75ca24ea8c949951664bf2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.006
+    second: {fileID: 2100000, guid: 061c1e590f99ecd4bafae1c5162de44b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.007
+    second: {fileID: 2100000, guid: 83e8c655b36e90645843ed476baf9924, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.008
+    second: {fileID: 2100000, guid: e75f5ce557822f84fb9da5a163352d13, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.009
+    second: {fileID: 2100000, guid: 8b5792e4d1a63cc4888bcbeb304805b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.010
+    second: {fileID: 2100000, guid: 2b5e9379ff2ad3d4e92b13231eaef5c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.011
+    second: {fileID: 2100000, guid: 9c14b97ce7eccb04ab2420fd7e195bf4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.012
+    second: {fileID: 2100000, guid: 430a5ec941282f7458ad7bba7d6241ee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.013
+    second: {fileID: 2100000, guid: a4555ba1b72bdcf45a00b99a47d7f269, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.014
+    second: {fileID: 2100000, guid: ae6948d824776ca4f9da7d4871073f5c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.015
+    second: {fileID: 2100000, guid: fe3be625b18504a4ab7bf684b76c9a1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.016
+    second: {fileID: 2100000, guid: f202f6907b2c46948aeed8cc81c7188c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.017
+    second: {fileID: 2100000, guid: c5e650c54e04a2549bd903b704e8fad5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.018
+    second: {fileID: 2100000, guid: b8699c6a91b3faa4587ccfff0e0d147c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.019
+    second: {fileID: 2100000, guid: 62815c9cf4c394b409be99b6c06a47f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.020
+    second: {fileID: 2100000, guid: a699032d5f0064347b068f3391116bd2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.021
+    second: {fileID: 2100000, guid: e942ef1a5bf70d34e8d4c103b7f8396b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.023
+    second: {fileID: 2100000, guid: f70e7020e7d82f14fb93265cbb0d26f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.024
+    second: {fileID: 2100000, guid: 31cfb070ea8f3cd4b88d669e603e72ba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.025
+    second: {fileID: 2100000, guid: 32d1781094e025f428969d784f6daeed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.026
+    second: {fileID: 2100000, guid: 0623f3453cc43ed428712e43f4e9e374, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.027
+    second: {fileID: 2100000, guid: ec66b0d8c0da7114488cfb200433bcda, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.028
+    second: {fileID: 2100000, guid: cd3f10b4cba0b2e4cbf99d0b356c79d5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.029
+    second: {fileID: 2100000, guid: b0d197c73297ad047b4aa09e92488c4a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.030
+    second: {fileID: 2100000, guid: 3dc6d6ab88bc08340a71b5a127351fc1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.031
+    second: {fileID: 2100000, guid: 66b84413b17a36b459fe44f746e1e3b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.032
+    second: {fileID: 2100000, guid: 01ba423375ae2f643addb3ca12ff428c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.033
+    second: {fileID: 2100000, guid: 515ffdc3f2a1c9c4e8639b35a24d64b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.034
+    second: {fileID: 2100000, guid: 931a52201d1101949b37cfc90c8fcd66, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.035
+    second: {fileID: 2100000, guid: 747f8237712816349bfe0a9e02754f74, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.036
+    second: {fileID: 2100000, guid: 1d75d41622c92bb4fb6955a279c7f14f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.037
+    second: {fileID: 2100000, guid: 342b7a3521e5f3c4c9141897561f5381, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.038
+    second: {fileID: 2100000, guid: 6d4b16e2b303e064e8380887fcf99308, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.039
+    second: {fileID: 2100000, guid: 99723b3f33100a94794bbb7c15f1234c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.040
+    second: {fileID: 2100000, guid: 67000bec67d45b9458b1b1c244ceaeaa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.041
+    second: {fileID: 2100000, guid: 153edce2fc2084f47b6dd82f93a47aa7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.042
+    second: {fileID: 2100000, guid: 571cf7d3eb7f0fd4482d8f08bbeaa7c0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.043
+    second: {fileID: 2100000, guid: 9572ffe54aecc5449aa5915c10f7a608, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.044
+    second: {fileID: 2100000, guid: dc76af66c951939428ea19a62dbcc631, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.045
+    second: {fileID: 2100000, guid: 7b84d2a6663b63a4d96a357cc8a9f1a7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.046
+    second: {fileID: 2100000, guid: afc4444d3c9c96e419e47438d407cff6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.047
+    second: {fileID: 2100000, guid: 2f58967565093834f9de667e6da5b3b4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.048
+    second: {fileID: 2100000, guid: 934872e9de35f9a4782b567014ec806d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.049
+    second: {fileID: 2100000, guid: 255282ab7b3020a4ca2a06254258b205, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.050
+    second: {fileID: 2100000, guid: 3230272d8be6c3341a0c309b86457d4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.051
+    second: {fileID: 2100000, guid: f5305671741ec9349bec0e2dee736c75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.052
+    second: {fileID: 2100000, guid: 120faf8b7cb6a614dbf3d9f7615d20f6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.053
+    second: {fileID: 2100000, guid: a712cffb844006c448773f30ea4fcb2f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.054
+    second: {fileID: 2100000, guid: 2cc815d41b4b5c3408259c46583177d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.055
+    second: {fileID: 2100000, guid: df8464694fc51154b90c5d9163fe8617, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.056
+    second: {fileID: 2100000, guid: 17dcb26ad37eb5f479222a9511027e85, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.057
+    second: {fileID: 2100000, guid: 2bd97b2e69ee67a4796cfc2839dce649, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.058
+    second: {fileID: 2100000, guid: 9a26673f3a1d3ad4bb835d3a3f813290, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.059
+    second: {fileID: 2100000, guid: c51853ab7bb0fd84680f635ba4cabd16, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.060
+    second: {fileID: 2100000, guid: b1fa64709c8117542bd0af35cdfb96f1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.061
+    second: {fileID: 2100000, guid: ac8f034259fac7541879ba2786ffa1fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.062
+    second: {fileID: 2100000, guid: 97ec6ddb2e4422d4c85564d3ec51cd30, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.063
+    second: {fileID: 2100000, guid: 3d0df387a2c67af458908e0d74870552, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.064
+    second: {fileID: 2100000, guid: 9bef5f58589a5a44e9790fd69aceccd8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.065
+    second: {fileID: 2100000, guid: d075b4f72d592984ab20fcef9ac1cdfc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.066
+    second: {fileID: 2100000, guid: 77b258dde7d2f7b439fc10c9bc7ceafd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.067
+    second: {fileID: 2100000, guid: b2664ab471eda3a42ada681bbf8ce744, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.068
+    second: {fileID: 2100000, guid: 546e71964977c6c4c94e5aecc0448707, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.069
+    second: {fileID: 2100000, guid: a08c326a3816c93429111356e5f8af38, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.070
+    second: {fileID: 2100000, guid: 3108e26dde5715d48bd72d3d09198e89, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.071
+    second: {fileID: 2100000, guid: a4f1fb2b5e6753349a1a6bed2391dcf9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.072
+    second: {fileID: 2100000, guid: fab72da441b7c504dbd7f59c0675e89e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.073
+    second: {fileID: 2100000, guid: 64dfb907c37887140820d31d0f3955b1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.074
+    second: {fileID: 2100000, guid: 672d705b45467404e829a3205750ec36, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.075
+    second: {fileID: 2100000, guid: c0d20dab7fea83b489c741d15ad39f24, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.076
+    second: {fileID: 2100000, guid: 7ef74af5835c09d488015e02cc826d2f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.077
+    second: {fileID: 2100000, guid: 4cfa06e5989be2845b11de160a288ac2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.078
+    second: {fileID: 2100000, guid: fb5fc846886b5194faacc2e77c6f193b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.079
+    second: {fileID: 2100000, guid: 78e4e8b8f62931948a7546b47dd60011, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.080
+    second: {fileID: 2100000, guid: 88fda9deeecb99a448aae94628c54241, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.081
+    second: {fileID: 2100000, guid: f92283608d553214799c6cf88855fa6a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.082
+    second: {fileID: 2100000, guid: d03276c173541664cab6f15cace10445, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.083
+    second: {fileID: 2100000, guid: d6b556135cae191488e210a252e79aba, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.084
+    second: {fileID: 2100000, guid: 6652643b005b8d842bdda7f94ab29135, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.085
+    second: {fileID: 2100000, guid: 053ffb032d4aa9541bc9c68b8bfd793e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.086
+    second: {fileID: 2100000, guid: f8ec8d2a0aa0c914399b775e078a4406, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.087
+    second: {fileID: 2100000, guid: c03468d87bea79743b4c3bdf2e0a9ffa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.088
+    second: {fileID: 2100000, guid: ee00c9b8e440f9a4d908882e5cb044ed, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.089
+    second: {fileID: 2100000, guid: e4739a414941995448960ffa491deda7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.090
+    second: {fileID: 2100000, guid: 2003bb83be79af9409bafb97b41f799b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.091
+    second: {fileID: 2100000, guid: 90b7f58447a57744d932c7e20c14bee5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.092
+    second: {fileID: 2100000, guid: 098c067539b86e645aff4e1d33568859, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.093
+    second: {fileID: 2100000, guid: 6627add14ba1ed1438ea6084454a7af6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.094
+    second: {fileID: 2100000, guid: 3af6000efe3a1ef4e8a56ecbbd0877b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.095
+    second: {fileID: 2100000, guid: 661c42ae28605f54ab04d8a0e3f6d250, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.096
+    second: {fileID: 2100000, guid: 04a4290cb52443c40adb6265bd48c929, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.097
+    second: {fileID: 2100000, guid: 1a3a55b3119e7314c9890cc8ed979eee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.098
+    second: {fileID: 2100000, guid: ae2598ae29846394bb8f254f43258ee5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.099
+    second: {fileID: 2100000, guid: 323fe2069f5794e46852de4161148ac1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.100
+    second: {fileID: 2100000, guid: a53707d5d99cce6468d866a921faadeb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.101
+    second: {fileID: 2100000, guid: bb887b514f717604abc209f78f76d681, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.102
+    second: {fileID: 2100000, guid: e1b1183d18981d3458e1282b8136e32b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: palette.103
+    second: {fileID: 2100000, guid: 3925599d3df60ba4c82a6da70bdd13fd, type: 2}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

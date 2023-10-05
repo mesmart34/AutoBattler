@@ -1,10 +1,12 @@
-﻿using Scripts.Contracts;
+﻿using Common;
+using Common.Effects;
+using Scripts.Contracts;
 using UnityEngine;
 using Zenject;
 
 namespace Factories
 {
-    public class EffectFactory : PlaceholderFactory<IEffect>
+    public class EffectFactory
     {
         private readonly DiContainer _diContainer;
 
@@ -17,13 +19,16 @@ namespace Factories
 
         public void Load()
         {
-            _prefab = Resources.Load("Prefabs/Unit");
+            _prefab = Resources.Load("Prefabs/Effect");
         }
-        public void Create(string name, Transform effectBar)
+        
+        public GameObject Create(Transform effectBar)
         {
-            var gameObject = _diContainer.InstantiatePrefab(_prefab, Vector3.zero, Quaternion.identity, effectBar);
-            //var configuration = _units.FirstOrDefault(x => x.name == name);
-            //gameObject.GetComponent<UnitInstaller>().unitSettings.unitConfiguration = configuration;
+            var effect = _diContainer.InstantiatePrefab(_prefab, Vector3.zero, Quaternion.identity, effectBar);
+            var rect = effect.GetComponent<RectTransform>();
+            rect.SetParent(effectBar);
+            rect.anchoredPosition3D = Vector3.zero;
+            return effect;
         }
     }
 }

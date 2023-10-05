@@ -3,8 +3,11 @@ using UnityEngine;
 
 namespace Common
 {
+    [CreateAssetMenu(fileName = "Player Configuration", menuName = "Autobattler/Player Configuration")]
     public class PlayerConfiguration : ScriptableObject
     {
+        public int mapProgress;
+        public int mapLevelInColumn;
         private int fightingSpirit = 10;
         private int money = 20;
 

@@ -1,118 +1,139 @@
 ﻿using System;
-using System.Collections.Generic;
 using Code.Unit;
 using Common;
 using Common.Unit;
-using Factories;
-using Scripts.Common.Unit;
 using Services;
-using Signals;
 using UnityEngine;
 using Zenject;
-using Random = UnityEngine.Random;
 
 namespace Models
 {
     [Serializable]
     public class UnitModel : IInitializable
     {
-        private readonly SpriteRenderer _spriteRenderer;
-        private readonly UnitConfiguration _unitConfiguration;
-        private readonly Canvas _canvas;
+        private Canvas _canvas;
         private GameObject _bars;
-
-
-        [Inject]
-        private readonly SignalBus _signalBus;
-        
-        [Inject]
-        private readonly HealthService _healthService;
-        
-        [Inject]
-        private readonly ManaService _manaService;
-        
-        [Inject]
-        private readonly AttackService _attackService;
-        
-        [Inject]
-        private readonly AnimationService _animationService;
-        
-        [Inject]
-        private readonly UnitFacade _unitFacade;
-
-        [Inject]
-        private readonly DamagePopupFactory _damagePopupFactory;
-
-        public UnitModel(UnitSettings unitSettings)
-        {
-            _unitConfiguration = unitSettings.unitConfiguration;
-            _spriteRenderer = unitSettings.spriteRenderer;
-            _spriteRenderer.sprite = unitSettings.unitConfiguration.sprite[0];
-            _canvas = unitSettings.canvas;
-            _bars = unitSettings.bars;
-        }
-        
-        public UnitState UnitState { get; set; } = UnitState.Tavern;
-        public bool IsEnemy => _unitConfiguration.isEnemy;
-
+        public UnitData UnitData { get; private set; }
         public bool IsAlive => _healthService.IsAlive;
 
-        public bool FindNearestTarget { get; set; }
+        [Inject]
+        protected UnitSettings UnitSettings;
+
+        [Inject]
+        private AnimationService _animationService;
         
-        public string Name => _unitConfiguration.name;
+        [Inject]
+        private AttackService _attackService;
+        
+        [Inject]
+        private ManaService _manaService;
+        
+        [InjectOptional]
+        private BoardModel _boardModel;
 
-        private void Die()
-        {
-            _signalBus.Fire<UnitDieSignal>();
-            _unitFacade.Die();
-            TurnOff();
-        }
+        [Inject]
+        private HealthService _healthService;
 
-        public void ApplyDamage(int damageAmount)
+        [Inject]
+        private UnitFacade _unitFacade;
+
+        public void SetupWithUnitData(UnitData unitData)
         {
-            _healthService?.ApplyDamage(damageAmount);
-            _animationService?.PlayRecieveDamageAnimation();
-            _damagePopupFactory.Create(damageAmount, Color.white, _canvas, 5.0f);
+            UnitData = unitData;
+            _canvas = UnitSettings.canvas;
+            _bars = UnitSettings.bars;
+            _animationService.Activate(UnitData);
+            _healthService.SetMaxHealth(UnitData.health);
+            if (UnitData.locked)
+            {
+                _animationService.PlayLockedAnimation();
+            }
         }
 
         public void Initialize()
         {
-            _spriteRenderer.sprite = _unitConfiguration.sprite[0];
-            _healthService.SetMaxHealth(_unitConfiguration.health);
             _healthService.OnHealthValueChanged += OnHealthChanged;
-            _bars.SetActive(false);
-            /*_effectService.AddEffect(new BurnEffect());
-            effectController.AddEffect();*/
-           // _signalBus.Subscribe<StartBattleSignal>(StartBattle);
-            //_signalBus.Subscribe<StopBattleSignal>(TurnOff);
+            _attackService.OnTargetNeed += OnTargetDestroyed;
         }
+
+        private void OnTargetDestroyed()
+        {
+            var target = _boardModel.FindTarget(_unitFacade);
+            _attackService.SetTarget(target);
+        }
+
+        private void Die()
+        {
+            _animationService.PlayDeadAnimation();
+            Deactivate();
+        }
+
+        public void SetAttackServiceActive(bool value)
+        {
+            
+        }
+        
+        public void SetManaServiceActive(bool value)
+        {
+            if (value)
+            {
+                _manaService.Activate(UnitData);
+            }
+            else
+            {
+                _manaService.Deactivate();
+            }
+        }
+
+        public void SetBarsActive(bool value)
+        {
+            _bars.SetActive(value);
+        }
+
+        public void ApplyDamage(int damageAmount, DamageType damageType = DamageType.Physical)
+        {
+            _healthService?.ApplyDamage(damageAmount);
+            _animationService?.PlayRecieveDamageAnimation();
+            //_damagePopupFactory.Create(damageAmount, Color.white, _canvas, 5.0f);
+        }
+
+        public void ApplyDamageByEffect(int damageAmount, DamageType damageType = DamageType.Physical)
+        {
+            _healthService?.ApplyDamage(damageAmount);
+            _animationService?.PlayRecieveDamageAnimation();
+            //_damagePopupFactory.Create(damageAmount, Color.white, _canvas, 5.0f);
+        }
+
 
         private void OnHealthChanged(int value, int maxValue)
         {
             if (value == 0)
             {
+                SetBarsActive(false);
                 Die();
             }
         }
 
-        private void TurnOff()
+        public void Activate()
         {
-            _manaService.TurnOff();
-            _attackService.TurnOff();
-            _animationService.TurnOff();
+            _attackService.Activate(UnitData);
+            _manaService.Activate(UnitData);
         }
 
-        public void PrepareMode()
+        public void Deactivate()
         {
-            UnitState = UnitState.Idle;
-            _attackService.FindTarget();
-            _bars.SetActive(true);
+            _attackService.Deactivate();
+            _manaService.Deactivate();
+            _animationService.Deactivate();
         }
 
-        public void StartBattle()
+        public void FindTarget()
         {
-            _manaService.TurnOn();
-            _attackService.TurnOn();
+            var target = _boardModel.FindTarget(_unitFacade);
+            if (_attackService.Target != null && !_attackService.Target.IsAlive)
+            {
+                _attackService.SetTarget(target);
+            }
         }
     }
 }

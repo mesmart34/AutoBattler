@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb969facc796412b97742bea0d8b7e2a, type: 3}
+  m_Name: Healer
+  m_EditorClassIdentifier: 
+  unitData:
+    name: Healer
+    locked: 0
+    health: 600
+    physicsShield: 3
+    magicShield: 7
+    mana: 70
+    manaRegenerationAmount: 5
+    attackTimeout: 1.5
+    attackStrength: 50
+    sprite:
+    - {fileID: 371609292, guid: 34604ca84b5df3146b487bc3026947da, type: 3}
+    - {fileID: -1969765542, guid: 34604ca84b5df3146b487bc3026947da, type: 3}
+    - {fileID: -1812306379, guid: 34604ca84b5df3146b487bc3026947da, type: 3}
+    emissionMap: []

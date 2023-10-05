@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using Common;
 using Common.Board;
+using Common.Tavern;
+using Common.Unit;
 using Contracts;
 using Factories;
 using Models;
-using Scripts.Common.Unit;
 using UnityEngine;
 using Zenject;
 
@@ -22,17 +24,14 @@ namespace Installers
 
         private void BindBoard()
         {
-            Container.BindInterfacesAndSelfTo<BoardModel>().AsSingle().WithArguments(boardSettings.transform);
+            Container.BindInterfacesAndSelfTo<UnitSpawner>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<BoardModel>().AsSingle().NonLazy();
+            Container.BindInterfacesAndSelfTo<PlatformSpawner>().AsSingle().WithArguments(boardSettings.boardPlatformSettings).NonLazy();
             Container.BindInstance(boardSettings);
         }
         
         private void BindFactory()
         {
-            Container
-                .Bind<IUnitFactory>()
-                .To<UnitFactory>()
-                .AsSingle();
-            
             Container
                 .Bind<PlatformFactory>()
                 .AsSingle();

@@ -1,18 +1,22 @@
 ﻿using System.Linq;
-using Common;
-using Contracts;
+using Common.Enemy;
+using Common.Unit;
+using Common.Unit.Enemy;
+using Common.Unit.Hero;
 using Installers;
 using UnityEngine;
 using Zenject;
 
 namespace Factories
 {
-    public class UnitFactory : IUnitFactory
+    public class UnitFactory
     {
         private readonly DiContainer _diContainer;
 
-        private Object[] _unitPrefabs;
-        private Object[] _enemyPrefabs;
+        private UnitConfiguration[] _unitConfigurations;
+        private EnemyConfiguration[] _enemyConfigurations;
+        private Object _heroPrefab;
+        private Object _enemyPrefab;
 
         public UnitFactory(DiContainer diContainer)
         {
@@ -21,26 +25,63 @@ namespace Factories
 
         public void Load()
         {
-            _unitPrefabs = Resources.LoadAll("Prefabs/Units");
-            _enemyPrefabs = Resources.LoadAll("Prefabs/Enemies");
+            _unitConfigurations = Resources.LoadAll<UnitConfiguration>("Hero Configurations");
+           // _enemyConfigurations = Resources.LoadAll<EnemyConfiguration>("Enemy Configurations");
+            _heroPrefab = Resources.Load("Prefabs/Hero");
+            _enemyPrefab = Resources.Load("Prefabs/Enemy");
         }
 
-
-        private GameObject CreateUnit(string prefabName, bool enemy)
+        public HeroFacade CreateHeroByName(string name, Vector3 position, Transform parent)
         {
-            if (enemy)
+            var unitConfiguration = _unitConfigurations.FirstOrDefault(x => x.unitData.name == name);
+            return CreateHero(unitConfiguration, position, parent);
+        }
+        
+        public HeroFacade CreateHero(UnitConfiguration unitConfiguration, Vector3 position, Transform parent)
+        {
+            var unitData = unitConfiguration.unitData;
+            var unitFacade = _diContainer.InstantiatePrefabForComponent<HeroFacade>(_heroPrefab, parent);
+            unitFacade.SetUnitData(new UnitData()
             {
-                return _enemyPrefabs.Cast<GameObject>().FirstOrDefault(x => x.name == prefabName);    
-            }
-            return _unitPrefabs.Cast<GameObject>().FirstOrDefault(x => x.name == prefabName);
+                name = unitData.name,
+                health = unitData.health,
+                mana = unitData.mana,
+                sprite = unitData.sprite,
+                attackStrength = unitData.attackStrength,
+                attackTimeout = unitData.attackTimeout,
+                magicShield = unitData.magicShield,
+                emissionMap = unitData.emissionMap,
+                physicsShield = unitData.physicsShield,
+                manaRegenerationAmount = unitData.manaRegenerationAmount,
+                locked = unitData.locked,
+                invertSpriteHorizontally = unitData.invertSpriteHorizontally
+            });
+            unitFacade.transform.position = position;
+            return unitFacade;
         }
 
-        public UnitFacade Create(string prefabName, bool enemy, Transform boardPlatform)
+        public EnemyFacade CreateEnemy(EnemyConfiguration unitEnemyConfiguration, Vector3 position, Transform parent)
         {
-            var prefab = CreateUnit(prefabName, enemy);
-            var unit = _diContainer.InstantiatePrefabForComponent<UnitFacade>(prefab);
-            unit.transform.position = boardPlatform.transform.position;
-            return unit;
+            var unitData = unitEnemyConfiguration.unitData;
+            var data = new UnitData()
+            {
+                name = unitData.name,
+                health = unitData.health,
+                mana = unitData.mana,
+                sprite = unitData.sprite,
+                attackStrength = unitData.attackStrength,
+                attackTimeout = unitData.attackTimeout,
+                magicShield = unitData.magicShield,
+                emissionMap = unitData.emissionMap,
+                physicsShield = unitData.physicsShield,
+                manaRegenerationAmount = unitData.manaRegenerationAmount,
+                locked = unitData.locked,
+                invertSpriteHorizontally = unitData.invertSpriteHorizontally
+            };
+            var enemyFacade = _diContainer.InstantiatePrefabForComponent<EnemyFacade>(_enemyPrefab, parent);
+            enemyFacade.SetUnitData(data);
+            enemyFacade.transform.position = position;
+            return enemyFacade;
         }
     }
 }

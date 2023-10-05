@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fb47b272bb649ca8253b24b8b2bc7f7, type: 3}
+  m_Name: Goblins Boss
+  m_EditorClassIdentifier: 
+  name: "\u0413\u043E\u0431\u043B\u0438\u043D \u0431\u043E\u0441\u0441"
+  enemies:
+  - enemyConfiguration: {fileID: 11400000, guid: 05567ef3f10a5d4439859bb57d50d6b4, type: 2}
+    position: {x: 1, y: 1}
+  - enemyConfiguration: {fileID: 11400000, guid: 51e17450f2c520c4e957df39c6dcfbd0, type: 2}
+    position: {x: 0, y: 1}
+  - enemyConfiguration: {fileID: 11400000, guid: 51e17450f2c520c4e957df39c6dcfbd0, type: 2}
+    position: {x: 1, y: 0}
